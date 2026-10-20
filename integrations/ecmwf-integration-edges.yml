@@ -1,0 +1,99 @@
+generated: '2026-10-18'
+method: searched
+source:
+- https://zapier.com/apps/ecmwf/integrations
+- https://n8n.io/integrations/ecmwf/
+- https://composio.dev/toolkits/ecmwf
+- https://monid.ai/tools/ecmwf
+checked:
+- https://api.nuget.org/v3
+- https://composio.dev/toolkits/ecmwf
+- https://crates.io/api/v1
+- https://make.com/en/integrations/ecmwf
+- https://monid.ai/tools/ecmwf
+- https://n8n.io/integrations/ecmwf
+- https://n8n.io/integrations/ecmwf/
+- https://proxy.golang.org
+- https://pypi.org/pypi
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
+- https://workato.com/integrations/ecmwf
+- https://www.ecmwf.int/en/about/what-we-do/copernicus
+- https://zapier.com/apps/ecmwf/integrations
+summary: null
+marketplace_apps: []
+edges:
+- partner: european-union
+  partner_name: European Union
+  type: claimed
+  direction: provider-built
+  evidence: https://www.ecmwf.int/en/about/what-we-do/copernicus
+  operations: []
+- partner: esa
+  partner_name: European Space Agency
+  type: claimed
+  direction: partner-built
+  evidence: https://www.ecmwf.int/en/about/what-we-do/environmental-services-and-future-vision/destination-earth
+  operations: []
+- partner: eumetsat
+  partner_name: EUMETSAT
+  type: claimed
+  direction: partner-built
+  evidence: https://www.ecmwf.int/en/about/what-we-do/environmental-services-and-future-vision/destination-earth
+  operations: []
+- partner_name: Open Geospatial Consortium
+  partner: ogc
+  detected_by: sweep-geospatial.py
+  first_seen: '2026-10-19'
+  partner_match: shape-anchor
+  type: contract
+  direction: provider-built
+  channel: provider-built
+  relationship: compatible
+  shape: ogc-api-processes
+  evidence_kind: own-contract
+  evidence: https://github.com/api-evangelist/ecmwf/blob/main/openapi/ecmwf-data-stores-processing-openapi.yml#L6
+  degree: declared-unqualified
+  quote: management. The service is based on the [OGC API - Processes standard](https://ogcapi.ogc.org/processes/).
+- partner_name: PyPI
+  partner: pypi
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Python)
+  evidence: https://pypi.org/project/cdsapi/
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: PyPI (public registry JSON)
+    spec_file: null
+    language: Python
+    packages:
+    - name: cdsapi
+      version: 0.7.7
+      released: '2025-09-30'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/cdsapi/
+      repo_leg: github-org:ecmwf
+      publisher_leg: email:ecmwf.int
+      matched_by: domain
+    - name: ecmwf-api-client
+      version: 1.7.0
+      released: '2026-06-17'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/ecmwf-api-client/
+      repo_leg: github-org:ecmwf
+      publisher_leg: email:ecmwf.int
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-20'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-20'
+templates: []
+note: ECMWF implements EU Copernicus services and collaborates with ESA and EUMETSAT on Destination Earth initiative.
