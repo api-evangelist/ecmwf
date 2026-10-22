@@ -1,0 +1,21 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist overlay for ECMWF Data Stores STAC Catalogue
+  version: 1.0.0
+extends: openapi/ecmwf-data-stores-catalogue-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/ecmwf-data-stores-catalogue-openapi.yml
+x-rationale: Adds provider/ownership context to the captured contract without mutating it.
+actions:
+- target: $.info
+  description: Record provider ownership and agent-facing context.
+  update:
+    x-provider: ECMWF
+    x-ownership: Served on Copernicus hosts because ECMWF implements C3S and CAMS (https://www.ecmwf.int/en/about/what-we-do/copernicus);
+      the contract's info.title names ECMWF Data Stores.
+    x-docs: https://cds.climate.copernicus.eu/how-to-api
+- target: $.info
+  description: Note that catalogue operations take no credentials.
+  update:
+    x-authentication: none declared; catalogue operations carry no PRIVATE-TOKEN header parameter

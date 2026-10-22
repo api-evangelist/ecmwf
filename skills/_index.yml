@@ -1,0 +1,44 @@
+name: ECMWF agent skills
+generated: '2026-10-18'
+method: generated
+source: Generated from the ECMWF Data Stores OpenAPI contracts under openapi/. No provider-published skills or AGENTS.md
+  were found.
+skills:
+- file: ecmwf-retrieve-dataset.md
+  name: ecmwf-retrieve-dataset
+  title: Retrieve data from a Data Store dataset
+  api: openapi/ecmwf-data-stores-processing-openapi.yml
+  operations:
+  - GetProcess_processes__process_id__get
+  - apply_constraints_processes__process_id__constraints_post
+  - estimate_cost_processes__process_id__costing_post
+  - PostProcessExecution_processes__process_id__execution_post
+  - GetJob_jobs__job_id__get
+  - GetJobResults_jobs__job_id__results_get
+- file: ecmwf-discover-datasets.md
+  name: ecmwf-discover-datasets
+  title: Discover datasets in the catalogue
+  api: openapi/ecmwf-data-stores-catalogue-openapi.yml
+  operations:
+  - Datasets_Search_datasets_post
+  - Get_Collection_collections__collection_id__get
+  - licence_details_vocabularies_licences__licence_uid__get
+  - list_changelog_by_id_collections__collection_id__messages_changelog_get
+- file: ecmwf-manage-jobs.md
+  name: ecmwf-manage-jobs
+  title: Manage retrieval jobs
+  api: openapi/ecmwf-data-stores-processing-openapi.yml
+  operations:
+  - GetJobs_jobs_get
+  - GetJob_jobs__job_id__get
+  - get_job_receipt_jobs__job_id__receipt_get
+  - DeleteJob_jobs__job_id__delete
+  - delete_jobs_jobs_delete_post
+- file: ecmwf-accept-dataset-licences.md
+  name: ecmwf-accept-dataset-licences
+  title: Accept dataset licences
+  api: openapi/ecmwf-data-stores-profiles-openapi.yml
+  operations:
+  - get_licences_account_licences_get
+  - accept_licence_account_licences__licence_uid__put
+  - accept_licences_account_licences_patch

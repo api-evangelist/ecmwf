@@ -1,0 +1,13 @@
+generated: '2026-10-18'
+method: searched
+source: https://www.ecmwf.int/en/forecasts/accessing-forecasts/service-agreements
+name: ECMWF pricing
+audience: business-product
+pricing_basis: negotiated
+published: false
+delivery:
+  delivery: managed
+  evidence: 'ECMWF provides hosted access to forecast products and data services'
+plans: []
+plan_count: 0
+note: ECMWF uses service agreements with fees based on user type (Member States, WMO members, commercial users, research projects, humanitarian agencies). Commercial users pay service agreement fees, while some services are free for WMO members and research projects. Specific pricing requires contacting ECMWF.

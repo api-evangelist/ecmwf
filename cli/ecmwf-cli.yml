@@ -1,0 +1,5 @@
+generated: '2026-10-18'
+method: none
+install: ''
+commands: []
+note: No dedicated CLI tool found. Python clients (cdsapi, ecmwf-api-client) provide command-line usage for data retrieval.

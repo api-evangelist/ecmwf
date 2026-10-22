@@ -1,0 +1,19 @@
+generated: '2026-10-18'
+method: searched
+source: https://cds.climate.copernicus.eu/how-to-api ; https://confluence.ecmwf.int/display/WEBAPI
+schemes:
+- type: apiKey
+  name: CDS API
+  description: Personal access token for Climate Data Store API
+  location: header
+  parameter: Authorization
+  format: 'Bearer <token>'
+  docs: https://cds.climate.copernicus.eu/how-to-api
+- type: apiKey
+  name: ECMWF Web API
+  description: API key for ECMWF Web API (MARS access)
+  location: config file
+  parameter: key
+  format: JSON configuration file
+  docs: https://confluence.ecmwf.int/display/WEBAPI
+note: ECMWF uses API keys/tokens for authentication. CDS API uses personal access tokens via Authorization header. ECMWF Web API uses API keys stored in configuration files.

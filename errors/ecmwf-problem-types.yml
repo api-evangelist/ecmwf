@@ -1,0 +1,28 @@
+generated: '2026-10-18'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/ecmwf-data-stores-catalogue-openapi.yml
+- openapi/ecmwf-data-stores-processing-openapi.yml
+- openapi/ecmwf-data-stores-profiles-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: HTTPValidationError
+coverage:
+  operations: 54
+  statuses_declared: 2
+problems:
+- status: 404
+  title: Not Found
+  description: Not found
+  operations: 30
+  media_types: []
+  schema: null
+- status: 422
+  title: Unprocessable Content
+  description: Validation Error
+  operations: 41
+  media_types:
+  - application/json
+  schema: HTTPValidationError

@@ -1,0 +1,700 @@
+{
+  "@context": {
+    "@vocab": "https://ecmwf.int/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "ecmwf": "https://ecmwf.int/schema#",
+    "Asset": "ecmwf:Asset",
+    "href": {
+      "@id": "ecmwf:href",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "ecmwf:type"
+    },
+    "title": {
+      "@id": "ecmwf:title"
+    },
+    "description": {
+      "@id": "ecmwf:description"
+    },
+    "roles": {
+      "@id": "ecmwf:roles"
+    },
+    "BaseSearchPostRequest": "ecmwf:BaseSearchPostRequest",
+    "collections": {
+      "@id": "ecmwf:collections"
+    },
+    "ids": {
+      "@id": "ecmwf:ids"
+    },
+    "bbox": {
+      "@id": "ecmwf:bbox"
+    },
+    "intersects": {
+      "@id": "ecmwf:intersects"
+    },
+    "datetime": {
+      "@id": "ecmwf:datetime"
+    },
+    "limit": {
+      "@id": "ecmwf:limit"
+    },
+    "CatalogueSortCriterion": "ecmwf:CatalogueSortCriterion",
+    "Changelog": "ecmwf:Changelog",
+    "changelog": {
+      "@id": "ecmwf:changelog",
+      "@container": "@list"
+    },
+    "Collection": "ecmwf:Collection",
+    "id": {
+      "@id": "ecmwf:id",
+      "@type": "xsd:string"
+    },
+    "stac_version": {
+      "@id": "ecmwf:stac_version",
+      "@type": "xsd:string"
+    },
+    "links": {
+      "@id": "ecmwf:links",
+      "@type": "@id"
+    },
+    "stac_extensions": {
+      "@id": "ecmwf:stac_extensions"
+    },
+    "assets": {
+      "@id": "ecmwf:assets"
+    },
+    "license": {
+      "@id": "ecmwf:license",
+      "@type": "xsd:string"
+    },
+    "extent": {
+      "@id": "ecmwf:extent",
+      "@type": "@id"
+    },
+    "keywords": {
+      "@id": "ecmwf:keywords"
+    },
+    "providers": {
+      "@id": "ecmwf:providers"
+    },
+    "summaries": {
+      "@id": "ecmwf:summaries"
+    },
+    "Collections": "ecmwf:Collections",
+    "numberMatched": {
+      "@id": "ecmwf:numberMatched"
+    },
+    "numberReturned": {
+      "@id": "ecmwf:numberReturned"
+    },
+    "Conformance": "ecmwf:Conformance",
+    "conformsTo": {
+      "@id": "ecmwf:conformsTo",
+      "@container": "@list"
+    },
+    "Content": "ecmwf:Content",
+    "published": {
+      "@id": "ecmwf:published",
+      "@type": "xsd:dateTime"
+    },
+    "updated": {
+      "@id": "ecmwf:updated",
+      "@type": "xsd:dateTime"
+    },
+    "data": {
+      "@id": "ecmwf:data"
+    },
+    "ContentSortCriterion": "ecmwf:ContentSortCriterion",
+    "Contents": "ecmwf:Contents",
+    "count": {
+      "@id": "ecmwf:count",
+      "@type": "xsd:integer"
+    },
+    "contents": {
+      "@id": "ecmwf:contents",
+      "@container": "@list"
+    },
+    "Extent": "ecmwf:Extent",
+    "spatial": {
+      "@id": "ecmwf:spatial",
+      "@type": "@id"
+    },
+    "temporal": {
+      "@id": "ecmwf:temporal",
+      "@type": "@id"
+    },
+    "FormData": "ecmwf:FormData",
+    "q": {
+      "@id": "ecmwf:q",
+      "@type": "xsd:string"
+    },
+    "kw": {
+      "@id": "ecmwf:kw"
+    },
+    "idx": {
+      "@id": "ecmwf:idx"
+    },
+    "sortby": {
+      "@id": "ecmwf:sortby",
+      "@type": "@id"
+    },
+    "page": {
+      "@id": "ecmwf:page",
+      "@type": "xsd:integer"
+    },
+    "search_stats": {
+      "@id": "ecmwf:search_stats",
+      "@type": "xsd:boolean"
+    },
+    "dashboard": {
+      "@id": "ecmwf:dashboard"
+    },
+    "GeometryCollection-Input": "ecmwf:GeometryCollection-Input",
+    "geometries": {
+      "@id": "ecmwf:geometries",
+      "@container": "@list"
+    },
+    "GeometryCollection-Output": "ecmwf:GeometryCollection-Output",
+    "HTTPValidationError": "ecmwf:HTTPValidationError",
+    "detail": {
+      "@id": "ecmwf:detail",
+      "@container": "@list"
+    },
+    "HealthCheck": "ecmwf:HealthCheck",
+    "status": {
+      "@id": "ecmwf:status",
+      "@type": "xsd:string"
+    },
+    "Item": "ecmwf:Item",
+    "geometry": {
+      "@id": "ecmwf:geometry"
+    },
+    "properties": {
+      "@id": "ecmwf:properties",
+      "@type": "@id"
+    },
+    "collection": {
+      "@id": "ecmwf:collection"
+    },
+    "ItemCollection": "ecmwf:ItemCollection",
+    "features": {
+      "@id": "ecmwf:features",
+      "@container": "@list"
+    },
+    "ItemProperties": "ecmwf:ItemProperties",
+    "created": {
+      "@id": "ecmwf:created"
+    },
+    "start_datetime": {
+      "@id": "ecmwf:start_datetime"
+    },
+    "end_datetime": {
+      "@id": "ecmwf:end_datetime"
+    },
+    "platform": {
+      "@id": "ecmwf:platform"
+    },
+    "instruments": {
+      "@id": "ecmwf:instruments"
+    },
+    "constellation": {
+      "@id": "ecmwf:constellation"
+    },
+    "mission": {
+      "@id": "ecmwf:mission"
+    },
+    "gsd": {
+      "@id": "ecmwf:gsd"
+    },
+    "ItemsLink": "ecmwf:ItemsLink",
+    "rel": {
+      "@id": "ecmwf:rel",
+      "@type": "xsd:string"
+    },
+    "method": {
+      "@id": "ecmwf:method",
+      "@type": "xsd:string"
+    },
+    "headers": {
+      "@id": "ecmwf:headers"
+    },
+    "body": {
+      "@id": "ecmwf:body"
+    },
+    "merge": {
+      "@id": "ecmwf:merge",
+      "@type": "xsd:boolean"
+    },
+    "Keyword": "ecmwf:Keyword",
+    "label": {
+      "@id": "ecmwf:label"
+    },
+    "Keywords": "ecmwf:Keywords",
+    "LandingPage": "ecmwf:LandingPage",
+    "Licence": "ecmwf:Licence",
+    "revision": {
+      "@id": "ecmwf:revision"
+    },
+    "contents_url": {
+      "@id": "ecmwf:contents_url",
+      "@type": "xsd:string"
+    },
+    "attachment_url": {
+      "@id": "ecmwf:attachment_url",
+      "@type": "xsd:string"
+    },
+    "scope": {
+      "@id": "ecmwf:scope"
+    },
+    "portal": {
+      "@id": "ecmwf:portal"
+    },
+    "spdx_identifier": {
+      "@id": "ecmwf:spdx_identifier"
+    },
+    "url": {
+      "@id": "ecmwf:url"
+    },
+    "LicenceCategories": "ecmwf:LicenceCategories",
+    "LicenceScopeCriterion": "ecmwf:LicenceScopeCriterion",
+    "Licences": "ecmwf:Licences",
+    "licences": {
+      "@id": "ecmwf:licences",
+      "@container": "@list"
+    },
+    "LineString": "ecmwf:LineString",
+    "coordinates": {
+      "@id": "ecmwf:coordinates",
+      "@container": "@list"
+    },
+    "Message": "ecmwf:Message",
+    "date": {
+      "@id": "ecmwf:date"
+    },
+    "summary": {
+      "@id": "ecmwf:summary"
+    },
+    "severity": {
+      "@id": "ecmwf:severity"
+    },
+    "content": {
+      "@id": "ecmwf:content"
+    },
+    "live": {
+      "@id": "ecmwf:live"
+    },
+    "show_date": {
+      "@id": "ecmwf:show_date"
+    },
+    "Messages": "ecmwf:Messages",
+    "messages": {
+      "@id": "ecmwf:messages",
+      "@container": "@list"
+    },
+    "MimeTypes": "ecmwf:MimeTypes",
+    "MultiLineString": "ecmwf:MultiLineString",
+    "MultiPoint": "ecmwf:MultiPoint",
+    "MultiPolygon": "ecmwf:MultiPolygon",
+    "PaginationLink": "ecmwf:PaginationLink",
+    "Point": "ecmwf:Point",
+    "Polygon": "ecmwf:Polygon",
+    "Provider": "ecmwf:Provider",
+    "name": {
+      "@id": "ecmwf:name",
+      "@type": "xsd:string"
+    },
+    "Range": "ecmwf:Range",
+    "minimum": {
+      "@id": "ecmwf:minimum"
+    },
+    "maximum": {
+      "@id": "ecmwf:maximum"
+    },
+    "SearchLink": "ecmwf:SearchLink",
+    "SpatialExtent": "ecmwf:SpatialExtent",
+    "TimeInterval": "ecmwf:TimeInterval",
+    "interval": {
+      "@id": "ecmwf:interval",
+      "@container": "@list"
+    },
+    "ValidationError": "ecmwf:ValidationError",
+    "loc": {
+      "@id": "ecmwf:loc",
+      "@container": "@list"
+    },
+    "msg": {
+      "@id": "ecmwf:msg",
+      "@type": "xsd:string"
+    },
+    "input": {
+      "@id": "ecmwf:input"
+    },
+    "ctx": {
+      "@id": "ecmwf:ctx"
+    },
+    "cads_catalogue_api_service__models__contents__Link": "ecmwf:cads_catalogue_api_service__models__contents__Link",
+    "stac_pydantic__links__Link": "ecmwf:stac_pydantic__links__Link",
+    "AdditionalParameter": "ecmwf:AdditionalParameter",
+    "value": {
+      "@id": "ecmwf:value",
+      "@container": "@list"
+    },
+    "AdditionalParameters": "ecmwf:AdditionalParameters",
+    "role": {
+      "@id": "ecmwf:role"
+    },
+    "parameters": {
+      "@id": "ecmwf:parameters"
+    },
+    "Bbox": "ecmwf:Bbox",
+    "crs": {
+      "@id": "ecmwf:crs"
+    },
+    "Crs": "ecmwf:Crs",
+    "DeleteJob": "ecmwf:DeleteJob",
+    "processID": {
+      "@id": "ecmwf:processID"
+    },
+    "jobID": {
+      "@id": "ecmwf:jobID",
+      "@type": "xsd:string"
+    },
+    "message": {
+      "@id": "ecmwf:message"
+    },
+    "started": {
+      "@id": "ecmwf:started"
+    },
+    "finished": {
+      "@id": "ecmwf:finished"
+    },
+    "progress": {
+      "@id": "ecmwf:progress"
+    },
+    "metadata": {
+      "@id": "ecmwf:metadata"
+    },
+    "DeleteJobs": "ecmwf:DeleteJobs",
+    "job_ids": {
+      "@id": "ecmwf:job_ids",
+      "@container": "@list"
+    },
+    "Execute": "ecmwf:Execute",
+    "inputs": {
+      "@id": "ecmwf:inputs"
+    },
+    "outputs": {
+      "@id": "ecmwf:outputs"
+    },
+    "response": {
+      "@id": "ecmwf:response"
+    },
+    "subscriber": {
+      "@id": "ecmwf:subscriber"
+    },
+    "Format": "ecmwf:Format",
+    "mediaType": {
+      "@id": "ecmwf:mediaType"
+    },
+    "encoding": {
+      "@id": "ecmwf:encoding"
+    },
+    "GetConformance": "ecmwf:GetConformance",
+    "GetJob": "ecmwf:GetJob",
+    "GetJobs": "ecmwf:GetJobs",
+    "jobs": {
+      "@id": "ecmwf:jobs",
+      "@container": "@list"
+    },
+    "GetLandingPage": "ecmwf:GetLandingPage",
+    "GetProcess": "ecmwf:GetProcess",
+    "additionalParameters": {
+      "@id": "ecmwf:additionalParameters"
+    },
+    "version": {
+      "@id": "ecmwf:version",
+      "@type": "xsd:string"
+    },
+    "jobControlOptions": {
+      "@id": "ecmwf:jobControlOptions"
+    },
+    "outputTransmission": {
+      "@id": "ecmwf:outputTransmission"
+    },
+    "GetProcesses": "ecmwf:GetProcesses",
+    "processes": {
+      "@id": "ecmwf:processes",
+      "@container": "@list"
+    },
+    "InputDescription": "ecmwf:InputDescription",
+    "minOccurs": {
+      "@id": "ecmwf:minOccurs"
+    },
+    "maxOccurs": {
+      "@id": "ecmwf:maxOccurs"
+    },
+    "JobControlOptions": "ecmwf:JobControlOptions",
+    "JobList": "ecmwf:JobList",
+    "JobListMetadata": "ecmwf:JobListMetadata",
+    "totalCount": {
+      "@id": "ecmwf:totalCount"
+    },
+    "totalCountLimit": {
+      "@id": "ecmwf:totalCountLimit"
+    },
+    "JobSortCriterion": "ecmwf:JobSortCriterion",
+    "JobType": "ecmwf:JobType",
+    "Link": "ecmwf:Link",
+    "hreflang": {
+      "@id": "ecmwf:hreflang"
+    },
+    "MaxOccur": "ecmwf:MaxOccur",
+    "Metadata": "ecmwf:Metadata",
+    "ObjectType": "ecmwf:ObjectType",
+    "Output": "ecmwf:Output",
+    "format": {
+      "@id": "ecmwf:format"
+    },
+    "transmissionMode": {
+      "@id": "ecmwf:transmissionMode"
+    },
+    "OutputDescription": "ecmwf:OutputDescription",
+    "PostProcessExecute": "ecmwf:PostProcessExecute",
+    "PostProcessExecution": "ecmwf:PostProcessExecution",
+    "ProcessSortCriterion": "ecmwf:ProcessSortCriterion",
+    "ProcessSummary": "ecmwf:ProcessSummary",
+    "QualifiedInputValue": "ecmwf:QualifiedInputValue",
+    "Reference": "ecmwf:Reference",
+    "ref": {
+      "@id": "ecmwf:ref",
+      "@type": "xsd:string"
+    },
+    "RequestCost": "ecmwf:RequestCost",
+    "cost": {
+      "@id": "ecmwf:cost",
+      "@type": "xsd:decimal"
+    },
+    "cost_bar_steps": {
+      "@id": "ecmwf:cost_bar_steps"
+    },
+    "request_is_valid": {
+      "@id": "ecmwf:request_is_valid",
+      "@type": "xsd:boolean"
+    },
+    "invalid_reason": {
+      "@id": "ecmwf:invalid_reason"
+    },
+    "RequestOrigin": "ecmwf:RequestOrigin",
+    "Response": "ecmwf:Response",
+    "SchemaItem": "ecmwf:SchemaItem",
+    "multipleOf": {
+      "@id": "ecmwf:multipleOf"
+    },
+    "exclusiveMaximum": {
+      "@id": "ecmwf:exclusiveMaximum"
+    },
+    "exclusiveMinimum": {
+      "@id": "ecmwf:exclusiveMinimum"
+    },
+    "maxLength": {
+      "@id": "ecmwf:maxLength"
+    },
+    "minLength": {
+      "@id": "ecmwf:minLength"
+    },
+    "pattern": {
+      "@id": "ecmwf:pattern"
+    },
+    "maxItems": {
+      "@id": "ecmwf:maxItems"
+    },
+    "minItems": {
+      "@id": "ecmwf:minItems"
+    },
+    "uniqueItems": {
+      "@id": "ecmwf:uniqueItems"
+    },
+    "maxProperties": {
+      "@id": "ecmwf:maxProperties"
+    },
+    "minProperties": {
+      "@id": "ecmwf:minProperties"
+    },
+    "required": {
+      "@id": "ecmwf:required"
+    },
+    "enum": {
+      "@id": "ecmwf:enum"
+    },
+    "default": {
+      "@id": "ecmwf:default"
+    },
+    "nullable": {
+      "@id": "ecmwf:nullable"
+    },
+    "readOnly": {
+      "@id": "ecmwf:readOnly"
+    },
+    "writeOnly": {
+      "@id": "ecmwf:writeOnly"
+    },
+    "example": {
+      "@id": "ecmwf:example"
+    },
+    "deprecated": {
+      "@id": "ecmwf:deprecated"
+    },
+    "contentMediaType": {
+      "@id": "ecmwf:contentMediaType"
+    },
+    "contentEncoding": {
+      "@id": "ecmwf:contentEncoding"
+    },
+    "contentSchema": {
+      "@id": "ecmwf:contentSchema"
+    },
+    "items": {
+      "@id": "ecmwf:items"
+    },
+    "SearchableStatusCode": "ecmwf:SearchableStatusCode",
+    "StatusCode": "ecmwf:StatusCode",
+    "StatusInfo": "ecmwf:StatusInfo",
+    "StatusInfoMetadata": "ecmwf:StatusInfoMetadata",
+    "request": {
+      "@id": "ecmwf:request"
+    },
+    "results": {
+      "@id": "ecmwf:results"
+    },
+    "datasetMetadata": {
+      "@id": "ecmwf:datasetMetadata"
+    },
+    "qos": {
+      "@id": "ecmwf:qos"
+    },
+    "log": {
+      "@id": "ecmwf:log"
+    },
+    "origin": {
+      "@id": "ecmwf:origin"
+    },
+    "Subscriber": "ecmwf:Subscriber",
+    "successUri": {
+      "@id": "ecmwf:successUri"
+    },
+    "inProgressUri": {
+      "@id": "ecmwf:inProgressUri"
+    },
+    "failedUri": {
+      "@id": "ecmwf:failedUri"
+    },
+    "TransmissionMode": "ecmwf:TransmissionMode",
+    "ActivitySectors": "ecmwf:ActivitySectors",
+    "activity_sectors": {
+      "@id": "ecmwf:activity_sectors",
+      "@container": "@list"
+    },
+    "Affiliations": "ecmwf:Affiliations",
+    "affiliations": {
+      "@id": "ecmwf:affiliations",
+      "@container": "@list"
+    },
+    "Countries": "ecmwf:Countries",
+    "countries": {
+      "@id": "ecmwf:countries",
+      "@container": "@list"
+    },
+    "Dataset": "ecmwf:Dataset",
+    "uid": {
+      "@id": "ecmwf:uid",
+      "@type": "xsd:string"
+    },
+    "LicenceData": "ecmwf:LicenceData",
+    "LicenceFullData": "ecmwf:LicenceFullData",
+    "LicencesData": "ecmwf:LicencesData",
+    "MinimalUserInfo": "ecmwf:MinimalUserInfo",
+    "sub": {
+      "@id": "ecmwf:sub"
+    },
+    "email": {
+      "@id": "ecmwf:email"
+    },
+    "RelatedData": "ecmwf:RelatedData",
+    "ThematicActivities": "ecmwf:ThematicActivities",
+    "thematic_activities": {
+      "@id": "ecmwf:thematic_activities",
+      "@container": "@list"
+    },
+    "UserCreationData": "ecmwf:UserCreationData",
+    "thematic_activity_id": {
+      "@id": "ecmwf:thematic_activity_id"
+    },
+    "affiliation_id": {
+      "@id": "ecmwf:affiliation_id"
+    },
+    "activity_sector_id": {
+      "@id": "ecmwf:activity_sector_id"
+    },
+    "country_id": {
+      "@id": "ecmwf:country_id"
+    },
+    "organisation": {
+      "@id": "ecmwf:organisation"
+    },
+    "contactable": {
+      "@id": "ecmwf:contactable",
+      "@type": "xsd:boolean"
+    },
+    "UserData": "ecmwf:UserData",
+    "UserInfo": "ecmwf:UserInfo",
+    "preferred_username": {
+      "@id": "ecmwf:preferred_username"
+    },
+    "given_name": {
+      "@id": "ecmwf:given_name"
+    },
+    "family_name": {
+      "@id": "ecmwf:family_name"
+    },
+    "thematic_activity": {
+      "@id": "ecmwf:thematic_activity"
+    },
+    "affiliation": {
+      "@id": "ecmwf:affiliation"
+    },
+    "activity_sector": {
+      "@id": "ecmwf:activity_sector"
+    },
+    "country": {
+      "@id": "ecmwf:country"
+    },
+    "starred_datasets": {
+      "@id": "ecmwf:starred_datasets",
+      "@container": "@list"
+    },
+    "tags": {
+      "@id": "ecmwf:tags",
+      "@container": "@list"
+    },
+    "origin_portal": {
+      "@id": "ecmwf:origin_portal"
+    },
+    "UserPAT": "ecmwf:UserPAT",
+    "pat": {
+      "@id": "ecmwf:pat"
+    },
+    "VocabularyItem": "ecmwf:VocabularyItem"
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "ECMWF API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects ECMWF's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-18) from openapi/ecmwf-data-stores-catalogue-openapi.yml, openapi/ecmwf-data-stores-processing-openapi.yml, openapi/ecmwf-data-stores-profiles-openapi.yml.",
+  "dcterms:created": "2026-10-18",
+  "dcterms:source": [
+    "openapi/ecmwf-data-stores-catalogue-openapi.yml",
+    "openapi/ecmwf-data-stores-processing-openapi.yml",
+    "openapi/ecmwf-data-stores-profiles-openapi.yml"
+  ]
+}

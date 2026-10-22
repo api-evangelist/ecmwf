@@ -1,0 +1,422 @@
+generated: '2026-10-18'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/ecmwf-data-stores-catalogue-openapi.yml
+- openapi/ecmwf-data-stores-processing-openapi.yml
+- openapi/ecmwf-data-stores-profiles-openapi.yml
+vocabulary:
+  name: ECMWF Domain Vocabulary
+  description: 'Terms declared by ECMWF''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-18'
+  terms:
+  - term: account
+    definition: API to interact with user's account settings (user's data, authentication, permissions checks, etc.)
+    tags:
+    - Resource Group
+    source: openapi/ecmwf-data-stores-profiles-openapi.yml
+  - term: Asset
+    definition: https://github.com/radiantearth/stac-spec/blob/v1.0.0/item-spec/item-spec.md#asset-object
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Asset
+  - term: BaseSearchPostRequest
+    definition: Base arguments for POST Request.
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/BaseSearchPostRequest
+  - term: CatalogueSortCriterion
+    definition: Sorting criteria for datasets search.
+    tags:
+    - Enumeration
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/CatalogueSortCriterion
+  - term: Changelog
+    definition: Changelog vocabulary.
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Changelog
+  - term: Collection
+    definition: https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/ogcapi-features#collection-collectionscollectionid
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Collection
+  - term: Collections
+    definition: https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/ogcapi-features#endpoints https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/ogcapi-features#collections-collections
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Collections
+  - term: Conformance
+    definition: https://github.com/radiantearth/stac-api-spec/blob/master/api-spec.md#ogc-api---features-endpoints
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Conformance
+  - term: Content
+    definition: Content definition.
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Content
+  - term: ContentSortCriterion
+    definition: Sorting criteria for contents search.
+    tags:
+    - Enumeration
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/ContentSortCriterion
+  - term: Contents
+    definition: Contents definition.
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Contents
+  - term: Extent
+    definition: https://github.com/radiantearth/stac-spec/blob/v1.0.0/collection-spec/collection-spec.md#extent-object
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Extent
+  - term: FormData
+    definition: Search datasets valid payload.
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/FormData
+  - term: GeometryCollection
+    definition: GeometryCollection Model
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/GeometryCollection-Input
+  - term: GeometryCollection
+    definition: GeometryCollection Model
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/GeometryCollection-Output
+  - term: HTTPValidationError
+    definition: 'Object declared by the contract with fields: detail.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/HTTPValidationError
+  - term: HealthCheck
+    definition: health check response model.
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/HealthCheck
+  - term: Item
+    definition: 'Object declared by the contract with fields: bbox, type, geometry, properties, id, stac_version, assets, links, stac_extensions,
+      collection.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Item
+  - term: ItemCollection
+    definition: https://github.com/radiantearth/stac-api-spec/blob/v1.0.0/fragments/itemcollection/README.md https://github.com/radiantearth/stac-api-spec/blob/v1.0.0/item-search/README.md#link-relations
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/ItemCollection
+  - term: ItemProperties
+    definition: https://github.com/radiantearth/stac-spec/blob/v1.0.0/item-spec/item-spec.md#properties-object
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/ItemProperties
+  - term: ItemsLink
+    definition: 'Object declared by the contract with fields: href, rel, type, title, method, headers, body, merge.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/ItemsLink
+  - term: Keyword
+    definition: Keyword definition.
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Keyword
+  - term: Keywords
+    definition: Keywords vocabulary.
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Keywords
+  - term: LandingPage
+    definition: https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/core https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/ogcapi-features#landing-page-
+      https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/item-search#link-relations
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/LandingPage
+  - term: Licence
+    definition: Licence definition.
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Licence
+  - term: LicenceCategories
+    definition: 'Enumeration declared by the contract with values: dataset, portal.'
+    tags:
+    - Enumeration
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/LicenceCategories
+  - term: LicenceScopeCriterion
+    definition: 'Enumeration declared by the contract with values: all, dataset, portal.'
+    tags:
+    - Enumeration
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/LicenceScopeCriterion
+  - term: Licences
+    definition: Licences vocabulary.
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Licences
+  - term: LineString
+    definition: LineString Model
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/LineString
+  - term: Message
+    definition: A portal or dataset message.
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Message
+  - term: Messages
+    definition: Messages vocabulary.
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Messages
+  - term: MimeTypes
+    definition: https://github.com/radiantearth/stac-spec/blob/v1.0.0/item-spec/item-spec.md#media-types
+    tags:
+    - Enumeration
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/MimeTypes
+  - term: MultiLineString
+    definition: MultiLineString Model
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/MultiLineString
+  - term: MultiPoint
+    definition: MultiPoint Model
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/MultiPoint
+  - term: MultiPolygon
+    definition: MultiPolygon Model
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/MultiPolygon
+  - term: PaginationLink
+    definition: https://github.com/radiantearth/stac-api-spec/blob/v1.0.0/item-search/README.md#pagination
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/PaginationLink
+  - term: Point
+    definition: Point Model
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Point
+  - term: Polygon
+    definition: Polygon Model
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Polygon
+  - term: Provider
+    definition: https://github.com/radiantearth/stac-spec/blob/v1.0.0/collection-spec/collection-spec.md#provider-object
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Provider
+  - term: Range
+    definition: https://github.com/radiantearth/stac-spec/blob/v1.0.0/collection-spec/collection-spec.md#stats-object
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Range
+  - term: SearchLink
+    definition: https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/item-search#link-relations
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/SearchLink
+  - term: SpatialExtent
+    definition: https://github.com/radiantearth/stac-spec/blob/v1.0.0/collection-spec/collection-spec.md#spatial-extent-object
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/SpatialExtent
+  - term: TimeInterval
+    definition: https://github.com/radiantearth/stac-spec/blob/v1.0.0/collection-spec/collection-spec.md#temporal-extent-object
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/TimeInterval
+  - term: ValidationError
+    definition: 'Object declared by the contract with fields: loc, msg, type, input, ctx.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/ValidationError
+  - term: Link
+    definition: Link definition.
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/cads_catalogue_api_service__models__contents__Link
+  - term: Link
+    definition: https://github.com/radiantearth/stac-spec/blob/v1.0.0/collection-spec/collection-spec.md#link-object
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/stac_pydantic__links__Link
+  - term: AdditionalParameter
+    definition: 'Object declared by the contract with fields: name, value.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/AdditionalParameter
+  - term: AdditionalParameters
+    definition: 'Object declared by the contract with fields: title, role, href, parameters.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/AdditionalParameters
+  - term: Bbox
+    definition: 'Object declared by the contract with fields: bbox, crs.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/Bbox
+  - term: Crs
+    definition: 'Enumeration declared by the contract with values: http://www.opengis.net/def/crs/OGC/1.3/CRS84, http://www.opengis.net/def/crs/OGC/0/CRS84h.'
+    tags:
+    - Enumeration
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/Crs
+  - term: DeleteJob
+    definition: 'Object declared by the contract with fields: processID, type, jobID, status, message, created, started, finished, updated, progress,
+      links, metadata.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/DeleteJob
+  - term: DeleteJobs
+    definition: Request body for DELETE /jobs.
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/DeleteJobs
+  - term: Execute
+    definition: 'Object declared by the contract with fields: inputs, outputs, response, subscriber.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/Execute
+  - term: Format
+    definition: 'Object declared by the contract with fields: mediaType, encoding, schema.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/Format
+  - term: GetConformance
+    definition: 'Object declared by the contract with fields: conformsTo.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/GetConformance
+  - term: GetJob
+    definition: 'Object declared by the contract with fields: processID, type, jobID, status, message, created, started, finished, updated, progress,
+      links, metadata.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/GetJob
+  - term: GetJobs
+    definition: 'Object declared by the contract with fields: jobs, links, metadata.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/GetJobs
+  - term: GetLandingPage
+    definition: 'Object declared by the contract with fields: title, description, links.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/GetLandingPage
+  - term: GetProcess
+    definition: 'Object declared by the contract with fields: title, description, keywords, metadata, additionalParameters, id, version, jobControlOptions,
+      outputTransmission, links, inputs, outputs.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/GetProcess
+  - term: GetProcesses
+    definition: 'Object declared by the contract with fields: processes, links.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/GetProcesses
+  - term: InputDescription
+    definition: 'Object declared by the contract with fields: title, description, keywords, metadata, additionalParameters, minOccurs, maxOccurs,
+      schema.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/InputDescription
+  - term: JobControlOptions
+    definition: 'Enumeration declared by the contract with values: sync-execute, async-execute, dismiss.'
+    tags:
+    - Enumeration
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/JobControlOptions
+  - term: JobList
+    definition: 'Object declared by the contract with fields: jobs, links, metadata.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/JobList
+  - term: JobListMetadata
+    definition: 'Object declared by the contract with fields: totalCount, totalCountLimit.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/JobListMetadata
+  - term: JobSortCriterion
+    definition: 'Enumeration declared by the contract with values: created, -created.'
+    tags:
+    - Enumeration
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/JobSortCriterion
+  - term: JobType
+    definition: 'Enumeration declared by the contract with values: process.'
+    tags:
+    - Enumeration
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/JobType
+  - term: Link
+    definition: 'Object declared by the contract with fields: href, rel, type, hreflang, title.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/Link
+  - term: MaxOccur
+    definition: 'Enumeration declared by the contract with values: unbounded.'
+    tags:
+    - Enumeration
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/MaxOccur
+  - term: Metadata
+    definition: 'Object declared by the contract with fields: title, role, href.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/Metadata
+  - term: ObjectType
+    definition: 'Enumeration declared by the contract with values: array, boolean, integer, number, object, string.'
+    tags:
+    - Enumeration
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/ObjectType
+  - term: Output
+    definition: 'Object declared by the contract with fields: format, transmissionMode.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/Output
+  - term: OutputDescription
+    definition: 'Object declared by the contract with fields: title, description, keywords, metadata, additionalParameters, schema.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/OutputDescription
+  - term: PostProcessExecute
+    definition: 'Object declared by the contract with fields: processID, type, jobID, status, message, created, started, finished, updated, progress,
+      links, metadata.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/PostProcessExecute
+  - term: PostProcessExecution
+    definition: 'Object declared by the contract with fields: processID, type, jobID, status, message, created, started, finished, updated, progress,
+      links, metadata.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/PostProcessExecution
+  - term: ProcessSortCriterion
+    definition: 'Enumeration declared by the contract with values: id, -id.'
+    tags:
+    - Enumeration
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/ProcessSortCriterion
+  - term: ProcessSummary
+    definition: 'Object declared by the contract with fields: title, description, keywords, metadata, additionalParameters, id, version, jobControlOptions,
+      outputTransmission, links.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/ProcessSummary
+  - term: QualifiedInputValue
+    definition: 'Object declared by the contract with fields: mediaType, encoding, schema, value.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/QualifiedInputValue
+  - term: Reference
+    definition: 'Object declared by the contract with fields: ref.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/Reference
+  - term: RequestCost
+    definition: 'Object declared by the contract with fields: id, cost, limit, cost_bar_steps, request_is_valid, invalid_reason.'
+    tags:
+    - Object
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/RequestCost
+  - term: RequestOrigin
+    definition: 'Enumeration declared by the contract with values: api, ui.'
+    tags:
+    - Enumeration
+    source: openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/RequestOrigin

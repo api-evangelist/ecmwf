@@ -1,0 +1,302 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ecmwf/main/json-schema/ecmwf-delete-job-schema.json",
+  "title": "DeleteJob",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/DeleteJob",
+  "properties": {
+    "processID": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Processid"
+    },
+    "type": {
+      "$ref": "#/$defs/JobType"
+    },
+    "jobID": {
+      "type": "string",
+      "title": "Jobid"
+    },
+    "status": {
+      "$ref": "#/$defs/StatusCode"
+    },
+    "message": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Message"
+    },
+    "created": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Created"
+    },
+    "started": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Started"
+    },
+    "finished": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Finished"
+    },
+    "updated": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Updated"
+    },
+    "progress": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "maximum": 100.0,
+          "minimum": 0.0
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Progress"
+    },
+    "links": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/Link"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Links"
+    },
+    "metadata": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/StatusInfoMetadata"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "additionalProperties": true,
+  "type": "object",
+  "required": [
+    "type",
+    "jobID",
+    "status"
+  ],
+  "$defs": {
+    "JobType": {
+      "type": "string",
+      "enum": [
+        "process"
+      ],
+      "title": "JobType"
+    },
+    "Link": {
+      "properties": {
+        "href": {
+          "type": "string",
+          "title": "Href"
+        },
+        "rel": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Rel"
+        },
+        "type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Type"
+        },
+        "hreflang": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Hreflang"
+        },
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Title"
+        }
+      },
+      "type": "object",
+      "required": [
+        "href"
+      ],
+      "title": "Link"
+    },
+    "StatusCode": {
+      "type": "string",
+      "enum": [
+        "accepted",
+        "running",
+        "successful",
+        "failed",
+        "rejected",
+        "dismissed"
+      ],
+      "title": "StatusCode"
+    },
+    "StatusInfoMetadata": {
+      "properties": {
+        "request": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Request"
+        },
+        "results": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Results"
+        },
+        "datasetMetadata": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Datasetmetadata"
+        },
+        "qos": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Qos"
+        },
+        "log": {
+          "anyOf": [
+            {
+              "items": {
+                "prefixItems": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ],
+                "type": "array",
+                "maxItems": 2,
+                "minItems": 2
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Log"
+        },
+        "origin": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Origin"
+        }
+      },
+      "type": "object",
+      "title": "StatusInfoMetadata"
+    }
+  }
+}

@@ -1,0 +1,80 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist overlay for ECMWF Data Stores Profile API
+  version: 1.0.0
+extends: openapi/ecmwf-data-stores-profiles-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/ecmwf-data-stores-profiles-openapi.yml
+x-rationale: The captured contract declares no components.securitySchemes; authentication appears only as a per-operation
+  `PRIVATE-TOKEN` header parameter (the personal access token documented at https://cds.climate.copernicus.eu/how-to-api).
+  This overlay adds an apiKey scheme for that header and a security requirement on exactly the 10 operations that
+  declare it, leaving unauthenticated operations open.
+actions:
+- target: $.info
+  description: Record provider ownership and agent-facing context.
+  update:
+    x-provider: ECMWF
+    x-ownership: Served on Copernicus hosts because ECMWF implements C3S and CAMS (https://www.ecmwf.int/en/about/what-we-do/copernicus);
+      the contract's info.title names ECMWF Data Stores.
+    x-docs: https://cds.climate.copernicus.eu/how-to-api
+- target: $.components
+  description: Add the PRIVATE-TOKEN personal access token scheme.
+  update:
+    securitySchemes:
+      privateToken:
+        type: apiKey
+        in: header
+        name: PRIVATE-TOKEN
+        description: Data Stores personal access token (the `key` in $HOME/.cdsapirc).
+- target: $.paths['/account/licences'].get
+  description: get_licences_account_licences_get declares the PRIVATE-TOKEN header; mark it as secured.
+  update:
+    security:
+    - privateToken: []
+- target: $.paths['/account/licences'].patch
+  description: accept_licences_account_licences_patch declares the PRIVATE-TOKEN header; mark it as secured.
+  update:
+    security:
+    - privateToken: []
+- target: $.paths['/account/licences/{licence_uid}'].put
+  description: accept_licence_account_licences__licence_uid__put declares the PRIVATE-TOKEN header; mark it as secured.
+  update:
+    security:
+    - privateToken: []
+- target: $.paths['/account/verification/pat'].post
+  description: Verify_Personal_API_Token_account_verification_pat_post declares the PRIVATE-TOKEN header; mark it
+    as secured.
+  update:
+    security:
+    - privateToken: []
+- target: $.paths['/account/verification/oidc'].post
+  description: Verify_OIDC_Token_account_verification_oidc_post declares the PRIVATE-TOKEN header; mark it as secured.
+  update:
+    security:
+    - privateToken: []
+- target: $.paths['/account/pat'].get
+  description: Get_personal_API_Token_account_pat_get declares the PRIVATE-TOKEN header; mark it as secured.
+  update:
+    security:
+    - privateToken: []
+- target: $.paths['/account/'].get
+  description: get_account_data_account__get declares the PRIVATE-TOKEN header; mark it as secured.
+  update:
+    security:
+    - privateToken: []
+- target: $.paths['/account/'].patch
+  description: update_account_account__patch declares the PRIVATE-TOKEN header; mark it as secured.
+  update:
+    security:
+    - privateToken: []
+- target: $.paths['/account/starred'].post
+  description: star_account_starred_post declares the PRIVATE-TOKEN header; mark it as secured.
+  update:
+    security:
+    - privateToken: []
+- target: $.paths['/account/starred/{dataset}'].delete
+  description: delete_starred_account_starred__dataset__delete declares the PRIVATE-TOKEN header; mark it as secured.
+  update:
+    security:
+    - privateToken: []

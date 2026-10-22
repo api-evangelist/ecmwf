@@ -1,0 +1,82 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist overlay for ECMWF Data Stores Processing API
+  version: 1.0.0
+extends: openapi/ecmwf-data-stores-processing-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/ecmwf-data-stores-processing-openapi.yml
+x-rationale: The captured contract declares no components.securitySchemes; authentication appears only as a per-operation
+  `PRIVATE-TOKEN` header parameter (the personal access token documented at https://cds.climate.copernicus.eu/how-to-api).
+  This overlay adds an apiKey scheme for that header and a security requirement on exactly the 10 operations that
+  declare it, leaving unauthenticated operations open.
+actions:
+- target: $.info
+  description: Record provider ownership and agent-facing context.
+  update:
+    x-provider: ECMWF
+    x-ownership: Served on Copernicus hosts because ECMWF implements C3S and CAMS (https://www.ecmwf.int/en/about/what-we-do/copernicus);
+      the contract's info.title names ECMWF Data Stores.
+    x-docs: https://cds.climate.copernicus.eu/how-to-api
+- target: $.components
+  description: Add the PRIVATE-TOKEN personal access token scheme.
+  update:
+    securitySchemes:
+      privateToken:
+        type: apiKey
+        in: header
+        name: PRIVATE-TOKEN
+        description: Data Stores personal access token (the `key` in $HOME/.cdsapirc).
+- target: $.paths['/processes/{process_id}/execute'].post
+  description: PostProcessExecute_processes__process_id__execute_post declares the PRIVATE-TOKEN header; mark it
+    as secured.
+  update:
+    security:
+    - privateToken: []
+- target: $.paths['/processes/{process_id}/execution'].post
+  description: PostProcessExecution_processes__process_id__execution_post declares the PRIVATE-TOKEN header; mark
+    it as secured.
+  update:
+    security:
+    - privateToken: []
+- target: $.paths['/jobs'].get
+  description: GetJobs_jobs_get declares the PRIVATE-TOKEN header; mark it as secured.
+  update:
+    security:
+    - privateToken: []
+- target: $.paths['/jobs/{job_id}'].get
+  description: GetJob_jobs__job_id__get declares the PRIVATE-TOKEN header; mark it as secured.
+  update:
+    security:
+    - privateToken: []
+- target: $.paths['/jobs/{job_id}'].delete
+  description: DeleteJob_jobs__job_id__delete declares the PRIVATE-TOKEN header; mark it as secured.
+  update:
+    security:
+    - privateToken: []
+- target: $.paths['/jobs/{job_id}/results'].get
+  description: GetJobResults_jobs__job_id__results_get declares the PRIVATE-TOKEN header; mark it as secured.
+  update:
+    security:
+    - privateToken: []
+- target: $.paths['/processes/{process_id}/constraints'].post
+  description: apply_constraints_processes__process_id__constraints_post declares the PRIVATE-TOKEN header; mark
+    it as secured.
+  update:
+    security:
+    - privateToken: []
+- target: $.paths['/processes/{process_id}/costing'].post
+  description: estimate_cost_processes__process_id__costing_post declares the PRIVATE-TOKEN header; mark it as secured.
+  update:
+    security:
+    - privateToken: []
+- target: $.paths['/jobs/delete'].post
+  description: delete_jobs_jobs_delete_post declares the PRIVATE-TOKEN header; mark it as secured.
+  update:
+    security:
+    - privateToken: []
+- target: $.paths['/jobs/{job_id}/receipt'].get
+  description: get_job_receipt_jobs__job_id__receipt_get declares the PRIVATE-TOKEN header; mark it as secured.
+  update:
+    security:
+    - privateToken: []

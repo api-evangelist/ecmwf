@@ -1,0 +1,12 @@
+{
+ "url": "https://cds.climate.copernicus.eu/api/catalogue/v1/openapi.json",
+ "requested_url": "https://cds.climate.copernicus.eu/api/catalogue/v1/openapi.json",
+ "status": 200,
+ "content_type": "application/vnd.oai.openapi+json;version=3.0",
+ "bytes": 44511,
+ "sha256": "8142f9a18ba4ac63d42e4404aa86fa9f1f54398ecb17dc89ffbd68e57e9cf886",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}

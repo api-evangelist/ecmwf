@@ -1,0 +1,8 @@
+generated: '2026-10-18'
+method: searched
+source: https://www.ecmwf.int/en/forecasts/accessing-forecasts/service-agreements ; https://status.ecmwf.int/
+status_page: https://status.ecmwf.int/
+versioning: null
+deprecation: null
+sla: null
+note: ECMWF provides status page for service monitoring. Access to forecasts and data is governed by service agreements based on user type (Member States, WMO members, commercial users, research projects, humanitarian agencies).

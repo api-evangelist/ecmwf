@@ -1,0 +1,2283 @@
+openapi: 3.1.0
+info:
+  title: ECMWF Data Stores STAC Catalogue
+  description: 'This API is a [STAC](https://stacspec.org/) compliant API to access
+    ECMWF Data Stores Service (DSS) catalogues.\
+
+    The implementation is based on [Standalone STAC Collections](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#standalone-collections)
+    while a custom extension is included to provide search capabilities among collections.'
+  version: '0.1'
+paths:
+  /:
+    get:
+      summary: Landing Page
+      description: Endpoint.
+      operationId: Landing_Page__get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandingPage'
+  /conformance:
+    get:
+      summary: Conformance Classes
+      description: Endpoint.
+      operationId: Conformance_Classes_conformance_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conformance'
+  /collections:
+    get:
+      summary: Get Collections
+      description: Endpoint.
+      operationId: Get_Collections_collections_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collections'
+  /collections/{collection_id}:
+    get:
+      summary: Get Collection
+      description: Endpoint.
+      operationId: Get_Collection_collections__collection_id__get
+      parameters:
+      - name: collection_id
+        in: path
+        required: true
+        schema:
+          type: string
+          description: Collection ID
+          title: Collection Id
+        description: Collection ID
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /datasets:
+    get:
+      tags:
+      - Datasets Search Extension
+      summary: Datasets Search
+      description: Filter datasets based on search parameters.
+      operationId: Datasets_Search_datasets_get
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Full-text search query
+          title: Q
+        description: Full-text search query
+      - name: kw
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Filter by keyword(s)
+          default: []
+          title: Kw
+        description: Filter by keyword(s)
+      - name: idx
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Filter by dataset IDs
+          default: []
+          title: Idx
+        description: Filter by dataset IDs
+      - name: sortby
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/CatalogueSortCriterion'
+          default: update
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+          title: Page
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 500
+          minimum: 1
+          default: 50
+          title: Limit
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                title: Response Datasets Search Datasets Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    post:
+      tags:
+      - Datasets Search Extension
+      summary: Datasets Search
+      description: Filter datasets based on search parameters.
+      operationId: Datasets_Search_datasets_post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormData'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                title: Response Datasets Search Datasets Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /_mgmt/ping:
+    get:
+      tags:
+      - Liveliness/Readiness
+      summary: Ping
+      description: Liveliness probe.
+      operationId: Ping__mgmt_ping_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response Ping  Mgmt Ping Get
+  /_mgmt/health:
+    get:
+      tags:
+      - Liveliness/Readiness
+      summary: Health
+      operationId: Health__mgmt_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheck'
+  /vocabularies/licences:
+    get:
+      tags:
+      - vocabularies
+      summary: List Licences
+      description: Endpoint to get all registered licences.
+      operationId: list_licences_vocabularies_licences_get
+      parameters:
+      - name: scope
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/LicenceScopeCriterion'
+          default: all
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Licences'
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /vocabularies/licences/{licence_uid}:
+    get:
+      tags:
+      - vocabularies
+      summary: Licence Details
+      description: Licence details.
+      operationId: licence_details_vocabularies_licences__licence_uid__get
+      parameters:
+      - name: licence_uid
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Licence UID
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Licence'
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /vocabularies/keywords:
+    get:
+      tags:
+      - vocabularies
+      summary: List Keywords
+      description: Endpoint to get all available keywords.
+      operationId: list_keywords_vocabularies_keywords_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Keywords'
+        '404':
+          description: Not found
+  /collections/{collection_id}/messages:
+    get:
+      tags:
+      - messages
+      summary: List Messages By Dataset
+      description: Endpoint to get all messages of a specific collection.
+      operationId: list_messages_by_dataset_collections__collection_id__messages_get
+      parameters:
+      - name: collection_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Collection Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Messages'
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /collections/{collection_id}/messages/changelog:
+    get:
+      tags:
+      - messages
+      summary: List Changelog By Id
+      description: Endpoint to get historical messages of a dataset.
+      operationId: list_changelog_by_id_collections__collection_id__messages_changelog_get
+      parameters:
+      - name: collection_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Collection Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Changelog'
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /messages:
+    get:
+      tags:
+      - messages
+      summary: List Messages
+      description: Endpoint to get all messages.
+      operationId: list_messages_messages_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Messages'
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /messages/changelog:
+    get:
+      tags:
+      - messages
+      summary: List Changelog
+      description: Full changelog of site messages.
+      operationId: list_changelog_messages_changelog_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Changelog'
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /collections/{collection_id}/form.json:
+    get:
+      summary: Form Redirect
+      description: Redirect to form.json (if defined).
+      operationId: form_redirect_collections__collection_id__form_json_get
+      parameters:
+      - name: collection_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Collection Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /collections/{collection_id}/constraints.json:
+    get:
+      summary: Constraints Redirect
+      description: Redirect to constraints.json (if defined).
+      operationId: constraints_redirect_collections__collection_id__constraints_json_get
+      parameters:
+      - name: collection_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Collection Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /doi/{doi_prefix}/{doi_suffix}:
+    get:
+      tags:
+      - doi
+      summary: Redirect By Doi
+      description: 'Permalink service to redirect to dataset page by querying using
+        DOI.
+
+
+        Required for keeping DOI compatibility from the old CDS.'
+      operationId: redirect_by_doi_doi__doi_prefix___doi_suffix__get
+      parameters:
+      - name: doi_prefix
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Doi Prefix
+      - name: doi_suffix
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Doi Suffix
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /contents/:
+    get:
+      tags:
+      - contents
+      summary: Get Contents
+      description: Endpoint to get all contents in the material catalogue.
+      operationId: Get_contents_contents__get
+      parameters:
+      - name: ctype
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          title: Ctype
+      - name: related_dataset
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          title: Related Dataset
+      - name: sortby
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/ContentSortCriterion'
+          default: title
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contents'
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /contents/{ctype}:
+    get:
+      tags:
+      - contents
+      summary: Get Contents Of Type
+      description: Endpoint to get all contents of a single type in the material catalogue.
+      operationId: Get_contents_of_type_contents__ctype__get
+      parameters:
+      - name: ctype
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Ctype
+      - name: sortby
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/ContentSortCriterion'
+          default: title
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contents'
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /contents/{ctype}/{id}:
+    get:
+      tags:
+      - contents
+      summary: Get Content
+      description: Endpoint to get a content.
+      operationId: Get_content_contents__ctype___id__get
+      parameters:
+      - name: ctype
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Ctype
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    Asset:
+      properties:
+        href:
+          type: string
+          minLength: 1
+          title: Href
+        type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Type
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        roles:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Roles
+      additionalProperties: true
+      type: object
+      required:
+      - href
+      title: Asset
+      description: https://github.com/radiantearth/stac-spec/blob/v1.0.0/item-spec/item-spec.md#asset-object
+    BaseSearchPostRequest:
+      properties:
+        collections:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Collections
+        ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Ids
+        bbox:
+          anyOf:
+          - prefixItems:
+            - anyOf:
+              - type: number
+              - type: integer
+            - anyOf:
+              - type: number
+              - type: integer
+            - anyOf:
+              - type: number
+              - type: integer
+            - anyOf:
+              - type: number
+              - type: integer
+            type: array
+            maxItems: 4
+            minItems: 4
+          - prefixItems:
+            - anyOf:
+              - type: number
+              - type: integer
+            - anyOf:
+              - type: number
+              - type: integer
+            - anyOf:
+              - type: number
+              - type: integer
+            - anyOf:
+              - type: number
+              - type: integer
+            - anyOf:
+              - type: number
+              - type: integer
+            - anyOf:
+              - type: number
+              - type: integer
+            type: array
+            maxItems: 6
+            minItems: 6
+          - type: 'null'
+          title: Bbox
+        intersects:
+          anyOf:
+          - $ref: '#/components/schemas/Point'
+          - $ref: '#/components/schemas/MultiPoint'
+          - $ref: '#/components/schemas/LineString'
+          - $ref: '#/components/schemas/MultiLineString'
+          - $ref: '#/components/schemas/Polygon'
+          - $ref: '#/components/schemas/MultiPolygon'
+          - $ref: '#/components/schemas/GeometryCollection-Input'
+          - type: 'null'
+          title: Intersects
+        datetime:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Datetime
+        limit:
+          anyOf:
+          - type: integer
+            exclusiveMinimum: 0.0
+          - type: 'null'
+          title: Limit
+          description: Limits the number of results that are included in each page
+            of the response (capped to 10_000).
+          default: 10
+      type: object
+      title: BaseSearchPostRequest
+      description: Base arguments for POST Request.
+    CatalogueSortCriterion:
+      type: string
+      enum:
+      - publication
+      - relevance
+      - update
+      - title
+      - id
+      title: CatalogueSortCriterion
+      description: Sorting criteria for datasets search.
+    Changelog:
+      properties:
+        changelog:
+          items:
+            $ref: '#/components/schemas/Message'
+          type: array
+          title: Changelog
+      type: object
+      required:
+      - changelog
+      title: Changelog
+      description: Changelog vocabulary.
+    Collection:
+      properties:
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        description:
+          type: string
+          minLength: 1
+          title: Description
+        stac_version:
+          type: string
+          pattern: ^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$
+          title: Stac Version
+          default: 1.0.0
+        links:
+          $ref: '#/components/schemas/stac_pydantic__links__Links'
+        stac_extensions:
+          anyOf:
+          - items:
+              type: string
+              minLength: 1
+              format: uri
+            type: array
+          - type: 'null'
+          title: Stac Extensions
+          default: []
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        type:
+          type: string
+          const: Collection
+          title: Type
+        assets:
+          anyOf:
+          - additionalProperties:
+              $ref: '#/components/schemas/Asset'
+            type: object
+          - type: 'null'
+          title: Assets
+        license:
+          type: string
+          minLength: 1
+          title: License
+        extent:
+          $ref: '#/components/schemas/Extent'
+        keywords:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Keywords
+        providers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Provider'
+            type: array
+          - type: 'null'
+          title: Providers
+        summaries:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - $ref: '#/components/schemas/Range'
+              - items: {}
+                type: array
+              - additionalProperties: true
+                type: object
+            type: object
+          - type: 'null'
+          title: Summaries
+      additionalProperties: true
+      type: object
+      required:
+      - id
+      - description
+      - links
+      - type
+      - license
+      - extent
+      title: Collection
+      description: https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/ogcapi-features#collection-collectionscollectionid
+    Collections:
+      properties:
+        links:
+          $ref: '#/components/schemas/stac_pydantic__api__links__Links'
+        collections:
+          items:
+            $ref: '#/components/schemas/Collection'
+          type: array
+          title: Collections
+        numberMatched:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Numbermatched
+        numberReturned:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Numberreturned
+      type: object
+      required:
+      - links
+      - collections
+      title: Collections
+      description: 'https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/ogcapi-features#endpoints
+
+        https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/ogcapi-features#collections-collections'
+    Conformance:
+      properties:
+        conformsTo:
+          items:
+            type: string
+            minLength: 1
+            format: uri
+          type: array
+          title: Conformsto
+      type: object
+      required:
+      - conformsTo
+      title: Conformance
+      description: https://github.com/radiantearth/stac-api-spec/blob/master/api-spec.md#ogc-api---features-endpoints
+    Content:
+      properties:
+        type:
+          type: string
+          title: Type
+        id:
+          type: string
+          title: Id
+        title:
+          type: string
+          title: Title
+        description:
+          type: string
+          title: Description
+        published:
+          type: string
+          format: date-time
+          title: Published
+        updated:
+          type: string
+          format: date-time
+          title: Updated
+        links:
+          items:
+            $ref: '#/components/schemas/cads_catalogue_api_service__models__contents__Link'
+          type: array
+          title: Links
+          default: []
+        data:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Data
+      type: object
+      required:
+      - type
+      - id
+      - title
+      - description
+      - published
+      - updated
+      title: Content
+      description: Content definition.
+    ContentSortCriterion:
+      type: string
+      enum:
+      - title
+      - publication
+      - update
+      title: ContentSortCriterion
+      description: Sorting criteria for contents search.
+    Contents:
+      properties:
+        count:
+          type: integer
+          title: Count
+        contents:
+          items:
+            $ref: '#/components/schemas/Content'
+          type: array
+          title: Contents
+      type: object
+      required:
+      - count
+      - contents
+      title: Contents
+      description: Contents definition.
+    Extent:
+      properties:
+        spatial:
+          $ref: '#/components/schemas/SpatialExtent'
+        temporal:
+          $ref: '#/components/schemas/TimeInterval'
+      type: object
+      required:
+      - spatial
+      - temporal
+      title: Extent
+      description: https://github.com/radiantearth/stac-spec/blob/v1.0.0/collection-spec/collection-spec.md#extent-object
+    FormData:
+      properties:
+        q:
+          type: string
+          title: Q
+          default: ''
+        kw:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Kw
+          default: []
+        idx:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Idx
+          default: []
+        sortby:
+          $ref: '#/components/schemas/CatalogueSortCriterion'
+          default: update
+        page:
+          type: integer
+          title: Page
+          default: 0
+        limit:
+          type: integer
+          title: Limit
+          default: 50
+        search_stats:
+          type: boolean
+          title: Search Stats
+          default: true
+        dashboard:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Dashboard
+      type: object
+      title: FormData
+      description: Search datasets valid payload.
+    GeometryCollection-Input:
+      properties:
+        bbox:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 4
+            minItems: 4
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 6
+            minItems: 6
+          - type: 'null'
+          title: Bbox
+        type:
+          type: string
+          const: GeometryCollection
+          title: Type
+        geometries:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Point'
+            - $ref: '#/components/schemas/MultiPoint'
+            - $ref: '#/components/schemas/LineString'
+            - $ref: '#/components/schemas/MultiLineString'
+            - $ref: '#/components/schemas/Polygon'
+            - $ref: '#/components/schemas/MultiPolygon'
+            - $ref: '#/components/schemas/GeometryCollection-Input'
+            discriminator:
+              propertyName: type
+              mapping:
+                GeometryCollection: '#/components/schemas/GeometryCollection-Input'
+                LineString: '#/components/schemas/LineString'
+                MultiLineString: '#/components/schemas/MultiLineString'
+                MultiPoint: '#/components/schemas/MultiPoint'
+                MultiPolygon: '#/components/schemas/MultiPolygon'
+                Point: '#/components/schemas/Point'
+                Polygon: '#/components/schemas/Polygon'
+          type: array
+          title: Geometries
+      type: object
+      required:
+      - type
+      - geometries
+      title: GeometryCollection
+      description: GeometryCollection Model
+    GeometryCollection-Output:
+      properties:
+        bbox:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 4
+            minItems: 4
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 6
+            minItems: 6
+          - type: 'null'
+          title: Bbox
+        type:
+          type: string
+          const: GeometryCollection
+          title: Type
+        geometries:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Point'
+            - $ref: '#/components/schemas/MultiPoint'
+            - $ref: '#/components/schemas/LineString'
+            - $ref: '#/components/schemas/MultiLineString'
+            - $ref: '#/components/schemas/Polygon'
+            - $ref: '#/components/schemas/MultiPolygon'
+            - $ref: '#/components/schemas/GeometryCollection-Output'
+            discriminator:
+              propertyName: type
+              mapping:
+                GeometryCollection: '#/components/schemas/GeometryCollection-Output'
+                LineString: '#/components/schemas/LineString'
+                MultiLineString: '#/components/schemas/MultiLineString'
+                MultiPoint: '#/components/schemas/MultiPoint'
+                MultiPolygon: '#/components/schemas/MultiPolygon'
+                Point: '#/components/schemas/Point'
+                Polygon: '#/components/schemas/Polygon'
+          type: array
+          title: Geometries
+      type: object
+      required:
+      - type
+      - geometries
+      title: GeometryCollection
+      description: GeometryCollection Model
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    HealthCheck:
+      properties:
+        status:
+          type: string
+          enum:
+          - UP
+          - DOWN
+          title: Status
+      additionalProperties: true
+      type: object
+      required:
+      - status
+      title: HealthCheck
+      description: health check response model.
+    Item:
+      properties:
+        bbox:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 4
+            minItems: 4
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 6
+            minItems: 6
+          - type: 'null'
+          title: Bbox
+        type:
+          type: string
+          const: Feature
+          title: Type
+        geometry:
+          anyOf:
+          - oneOf:
+            - $ref: '#/components/schemas/Point'
+            - $ref: '#/components/schemas/MultiPoint'
+            - $ref: '#/components/schemas/LineString'
+            - $ref: '#/components/schemas/MultiLineString'
+            - $ref: '#/components/schemas/Polygon'
+            - $ref: '#/components/schemas/MultiPolygon'
+            - $ref: '#/components/schemas/GeometryCollection-Output'
+            discriminator:
+              propertyName: type
+              mapping:
+                GeometryCollection: '#/components/schemas/GeometryCollection-Output'
+                LineString: '#/components/schemas/LineString'
+                MultiLineString: '#/components/schemas/MultiLineString'
+                MultiPoint: '#/components/schemas/MultiPoint'
+                MultiPolygon: '#/components/schemas/MultiPolygon'
+                Point: '#/components/schemas/Point'
+                Polygon: '#/components/schemas/Polygon'
+          - type: 'null'
+          title: Geometry
+        properties:
+          $ref: '#/components/schemas/ItemProperties'
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        stac_version:
+          type: string
+          pattern: ^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$
+          title: Stac Version
+          default: 1.0.0
+        assets:
+          additionalProperties:
+            $ref: '#/components/schemas/Asset'
+          type: object
+          title: Assets
+        links:
+          $ref: '#/components/schemas/stac_pydantic__links__Links'
+        stac_extensions:
+          anyOf:
+          - items:
+              type: string
+              minLength: 1
+              format: uri
+            type: array
+          - type: 'null'
+          title: Stac Extensions
+          default: []
+        collection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Collection
+      type: object
+      required:
+      - type
+      - geometry
+      - properties
+      - id
+      - assets
+      - links
+      title: Item
+    ItemCollection:
+      properties:
+        bbox:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 4
+            minItems: 4
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 6
+            minItems: 6
+          - type: 'null'
+          title: Bbox
+        type:
+          type: string
+          const: FeatureCollection
+          title: Type
+        features:
+          items:
+            $ref: '#/components/schemas/Item'
+          type: array
+          title: Features
+        links:
+          anyOf:
+          - $ref: '#/components/schemas/stac_pydantic__api__links__Links'
+          - type: 'null'
+        numberMatched:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Numbermatched
+        numberReturned:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Numberreturned
+      type: object
+      required:
+      - type
+      - features
+      title: ItemCollection
+      description: 'https://github.com/radiantearth/stac-api-spec/blob/v1.0.0/fragments/itemcollection/README.md
+
+        https://github.com/radiantearth/stac-api-spec/blob/v1.0.0/item-search/README.md#link-relations'
+    ItemProperties:
+      properties:
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        datetime:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Datetime
+        created:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created
+        updated:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated
+        start_datetime:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Start Datetime
+        end_datetime:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: End Datetime
+        license:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: License
+        providers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Provider'
+            type: array
+          - type: 'null'
+          title: Providers
+        platform:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Platform
+        instruments:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Instruments
+        constellation:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Constellation
+        mission:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mission
+        gsd:
+          anyOf:
+          - type: number
+            exclusiveMinimum: 0.0
+          - type: 'null'
+          title: Gsd
+      additionalProperties: true
+      type: object
+      required:
+      - datetime
+      title: ItemProperties
+      description: https://github.com/radiantearth/stac-spec/blob/v1.0.0/item-spec/item-spec.md#properties-object
+    ItemsLink:
+      properties:
+        href:
+          type: string
+          pattern: .*\/items(\?.*)?\b
+          title: Href
+        rel:
+          type: string
+          enum:
+          - self
+          - items
+          title: Rel
+        type:
+          type: string
+          const: application/geo+json
+          title: Type
+          default: application/geo+json
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        method:
+          type: string
+          enum:
+          - GET
+          - POST
+          title: Method
+          default: GET
+        headers:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Headers
+        body:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Body
+        merge:
+          type: boolean
+          title: Merge
+          default: false
+      additionalProperties: true
+      type: object
+      required:
+      - href
+      - rel
+      title: ItemsLink
+    Keyword:
+      properties:
+        id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Id
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+      type: object
+      required:
+      - id
+      - label
+      title: Keyword
+      description: Keyword definition.
+    Keywords:
+      properties:
+        keywords:
+          items:
+            $ref: '#/components/schemas/Keyword'
+          type: array
+          title: Keywords
+      type: object
+      required:
+      - keywords
+      title: Keywords
+      description: Keywords vocabulary.
+    LandingPage:
+      properties:
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        description:
+          type: string
+          minLength: 1
+          title: Description
+        stac_version:
+          type: string
+          pattern: ^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$
+          title: Stac Version
+          default: 1.0.0
+        links:
+          $ref: '#/components/schemas/stac_pydantic__api__links__Links'
+        stac_extensions:
+          anyOf:
+          - items:
+              type: string
+              minLength: 1
+              format: uri
+            type: array
+          - type: 'null'
+          title: Stac Extensions
+          default: []
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        type:
+          type: string
+          const: Catalog
+          title: Type
+        conformsTo:
+          items:
+            type: string
+            minLength: 1
+            format: uri
+          type: array
+          title: Conformsto
+          default:
+          - https://api.stacspec.org/v1.0.0/core
+          - http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core
+      additionalProperties: true
+      type: object
+      required:
+      - id
+      - description
+      - links
+      - type
+      title: LandingPage
+      description: 'https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/core
+
+        https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/ogcapi-features#landing-page-
+
+        https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/item-search#link-relations'
+    Licence:
+      properties:
+        id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Id
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+        revision:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Revision
+        contents_url:
+          type: string
+          title: Contents Url
+        attachment_url:
+          type: string
+          title: Attachment Url
+        scope:
+          anyOf:
+          - $ref: '#/components/schemas/LicenceCategories'
+          - type: string
+          - type: 'null'
+          title: Scope
+        portal:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Portal
+        spdx_identifier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Spdx Identifier
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
+      type: object
+      required:
+      - id
+      - label
+      - revision
+      - contents_url
+      - attachment_url
+      - scope
+      - portal
+      - spdx_identifier
+      - url
+      title: Licence
+      description: Licence definition.
+    LicenceCategories:
+      type: string
+      enum:
+      - dataset
+      - portal
+      title: LicenceCategories
+    LicenceScopeCriterion:
+      type: string
+      enum:
+      - all
+      - dataset
+      - portal
+      title: LicenceScopeCriterion
+    Licences:
+      properties:
+        licences:
+          items:
+            $ref: '#/components/schemas/Licence'
+          type: array
+          title: Licences
+      type: object
+      required:
+      - licences
+      title: Licences
+      description: Licences vocabulary.
+    LineString:
+      properties:
+        bbox:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 4
+            minItems: 4
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 6
+            minItems: 6
+          - type: 'null'
+          title: Bbox
+        type:
+          type: string
+          const: LineString
+          title: Type
+        coordinates:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/Position2D'
+            - $ref: '#/components/schemas/Position3D'
+          type: array
+          minItems: 2
+          title: Coordinates
+      type: object
+      required:
+      - type
+      - coordinates
+      title: LineString
+      description: LineString Model
+    Message:
+      properties:
+        id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Id
+        date:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Date
+        summary:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Summary
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
+        severity:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Severity
+        content:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Content
+        live:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Live
+        show_date:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Show Date
+          default: true
+      type: object
+      required:
+      - id
+      - date
+      - severity
+      - content
+      - live
+      title: Message
+      description: A portal or dataset message.
+    Messages:
+      properties:
+        messages:
+          items:
+            $ref: '#/components/schemas/Message'
+          type: array
+          title: Messages
+      type: object
+      required:
+      - messages
+      title: Messages
+      description: Messages vocabulary.
+    MimeTypes:
+      type: string
+      enum:
+      - image/tiff; application=geotiff
+      - image/tiff; application=geotiff; profile=cloud-optimized
+      - image/jp2
+      - image/png
+      - image/jpeg
+      - application/geo+json
+      - application/geo+json-seq
+      - application/geopackage+sqlite3
+      - application/vnd.google-earth.kml+xml
+      - application/vnd.google-earth.kmz
+      - application/x-protobuf
+      - application/vnd.mapbox-vector-tile
+      - application/x-hdf
+      - application/x-hdf5
+      - application/xml
+      - application/json
+      - application/ndjson
+      - text/html
+      - text/plain
+      - application/vnd.oai.openapi+json;version=3.0
+      - application/vnd.oai.openapi;version=3.0
+      - application/schema+json
+      - application/pdf
+      - text/csv
+      - application/vnd.apache.parquet
+      - application/octet-stream
+      title: MimeTypes
+      description: https://github.com/radiantearth/stac-spec/blob/v1.0.0/item-spec/item-spec.md#media-types
+    MultiLineString:
+      properties:
+        bbox:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 4
+            minItems: 4
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 6
+            minItems: 6
+          - type: 'null'
+          title: Bbox
+        type:
+          type: string
+          const: MultiLineString
+          title: Type
+        coordinates:
+          items:
+            items:
+              anyOf:
+              - $ref: '#/components/schemas/Position2D'
+              - $ref: '#/components/schemas/Position3D'
+            type: array
+            minItems: 2
+          type: array
+          title: Coordinates
+      type: object
+      required:
+      - type
+      - coordinates
+      title: MultiLineString
+      description: MultiLineString Model
+    MultiPoint:
+      properties:
+        bbox:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 4
+            minItems: 4
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 6
+            minItems: 6
+          - type: 'null'
+          title: Bbox
+        type:
+          type: string
+          const: MultiPoint
+          title: Type
+        coordinates:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/Position2D'
+            - $ref: '#/components/schemas/Position3D'
+          type: array
+          title: Coordinates
+      type: object
+      required:
+      - type
+      - coordinates
+      title: MultiPoint
+      description: MultiPoint Model
+    MultiPolygon:
+      properties:
+        bbox:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 4
+            minItems: 4
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 6
+            minItems: 6
+          - type: 'null'
+          title: Bbox
+        type:
+          type: string
+          const: MultiPolygon
+          title: Type
+        coordinates:
+          items:
+            items:
+              items:
+                anyOf:
+                - $ref: '#/components/schemas/Position2D'
+                - $ref: '#/components/schemas/Position3D'
+              type: array
+              minItems: 4
+            type: array
+          type: array
+          title: Coordinates
+      type: object
+      required:
+      - type
+      - coordinates
+      title: MultiPolygon
+      description: MultiPolygon Model
+    PaginationLink:
+      properties:
+        href:
+          type: string
+          minLength: 1
+          title: Href
+        rel:
+          type: string
+          enum:
+          - next
+          - prev
+          title: Rel
+        type:
+          anyOf:
+          - $ref: '#/components/schemas/MimeTypes'
+          - type: string
+          - type: 'null'
+          title: Type
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        method:
+          type: string
+          enum:
+          - GET
+          - POST
+          title: Method
+          default: GET
+        headers:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Headers
+        body:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Body
+        merge:
+          type: boolean
+          title: Merge
+          default: false
+      additionalProperties: true
+      type: object
+      required:
+      - href
+      - rel
+      title: PaginationLink
+      description: https://github.com/radiantearth/stac-api-spec/blob/v1.0.0/item-search/README.md#pagination
+    Point:
+      properties:
+        bbox:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 4
+            minItems: 4
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 6
+            minItems: 6
+          - type: 'null'
+          title: Bbox
+        type:
+          type: string
+          const: Point
+          title: Type
+        coordinates:
+          anyOf:
+          - $ref: '#/components/schemas/Position2D'
+          - $ref: '#/components/schemas/Position3D'
+          title: Coordinates
+      type: object
+      required:
+      - type
+      - coordinates
+      title: Point
+      description: Point Model
+    Polygon:
+      properties:
+        bbox:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 4
+            minItems: 4
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 6
+            minItems: 6
+          - type: 'null'
+          title: Bbox
+        type:
+          type: string
+          const: Polygon
+          title: Type
+        coordinates:
+          items:
+            items:
+              anyOf:
+              - $ref: '#/components/schemas/Position2D'
+              - $ref: '#/components/schemas/Position3D'
+            type: array
+            minItems: 4
+          type: array
+          title: Coordinates
+      type: object
+      required:
+      - type
+      - coordinates
+      title: Polygon
+      description: Polygon Model
+    Position2D:
+      prefixItems:
+      - type: number
+        title: Longitude
+      - type: number
+        title: Latitude
+      type: array
+      maxItems: 2
+      minItems: 2
+    Position3D:
+      prefixItems:
+      - type: number
+        title: Longitude
+      - type: number
+        title: Latitude
+      - type: number
+        title: Altitude
+      type: array
+      maxItems: 3
+      minItems: 3
+    Provider:
+      properties:
+        name:
+          type: string
+          minLength: 1
+          title: Name
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        roles:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Roles
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
+      type: object
+      required:
+      - name
+      title: Provider
+      description: https://github.com/radiantearth/stac-spec/blob/v1.0.0/collection-spec/collection-spec.md#provider-object
+    Range:
+      properties:
+        minimum:
+          anyOf:
+          - type: number
+          - type: integer
+          - type: string
+          title: Minimum
+        maximum:
+          anyOf:
+          - type: number
+          - type: integer
+          - type: string
+          title: Maximum
+      type: object
+      required:
+      - minimum
+      - maximum
+      title: Range
+      description: https://github.com/radiantearth/stac-spec/blob/v1.0.0/collection-spec/collection-spec.md#stats-object
+    SearchLink:
+      properties:
+        href:
+          type: string
+          pattern: .*\/search(\?.*)?\b
+          title: Href
+        rel:
+          type: string
+          enum:
+          - self
+          - search
+          - next
+          - prev
+          title: Rel
+        type:
+          type: string
+          const: application/geo+json
+          title: Type
+          default: application/geo+json
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        method:
+          type: string
+          enum:
+          - GET
+          - POST
+          title: Method
+          default: GET
+        headers:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Headers
+        body:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Body
+        merge:
+          type: boolean
+          title: Merge
+          default: false
+      additionalProperties: true
+      type: object
+      required:
+      - href
+      - rel
+      title: SearchLink
+      description: https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/item-search#link-relations
+    SpatialExtent:
+      properties:
+        bbox:
+          items:
+            anyOf:
+            - prefixItems:
+              - anyOf:
+                - type: number
+                - type: integer
+              - anyOf:
+                - type: number
+                - type: integer
+              - anyOf:
+                - type: number
+                - type: integer
+              - anyOf:
+                - type: number
+                - type: integer
+              type: array
+              maxItems: 4
+              minItems: 4
+            - prefixItems:
+              - anyOf:
+                - type: number
+                - type: integer
+              - anyOf:
+                - type: number
+                - type: integer
+              - anyOf:
+                - type: number
+                - type: integer
+              - anyOf:
+                - type: number
+                - type: integer
+              - anyOf:
+                - type: number
+                - type: integer
+              - anyOf:
+                - type: number
+                - type: integer
+              type: array
+              maxItems: 6
+              minItems: 6
+          type: array
+          title: Bbox
+      type: object
+      required:
+      - bbox
+      title: SpatialExtent
+      description: https://github.com/radiantearth/stac-spec/blob/v1.0.0/collection-spec/collection-spec.md#spatial-extent-object
+    TimeInterval:
+      properties:
+        interval:
+          items:
+            items:
+              anyOf:
+              - type: string
+                format: date-time
+              - type: 'null'
+            type: array
+            maxItems: 2
+            minItems: 2
+          type: array
+          minItems: 1
+          title: Interval
+      type: object
+      required:
+      - interval
+      title: TimeInterval
+      description: https://github.com/radiantearth/stac-spec/blob/v1.0.0/collection-spec/collection-spec.md#temporal-extent-object
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    cads_catalogue_api_service__models__contents__Link:
+      properties:
+        href:
+          anyOf:
+          - type: string
+            maxLength: 2083
+            minLength: 1
+            format: uri
+          - type: string
+          title: Href
+        rel:
+          type: string
+          title: Rel
+        type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Type
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+      type: object
+      required:
+      - href
+      - rel
+      title: Link
+      description: Link definition.
+    stac_pydantic__api__links__Links:
+      items:
+        anyOf:
+        - $ref: '#/components/schemas/SearchLink'
+        - $ref: '#/components/schemas/PaginationLink'
+        - $ref: '#/components/schemas/ItemsLink'
+        - $ref: '#/components/schemas/stac_pydantic__links__Link'
+      type: array
+      title: Links
+    stac_pydantic__links__Link:
+      properties:
+        href:
+          type: string
+          minLength: 1
+          title: Href
+        rel:
+          type: string
+          minLength: 1
+          title: Rel
+        type:
+          anyOf:
+          - $ref: '#/components/schemas/MimeTypes'
+          - type: string
+          - type: 'null'
+          title: Type
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+      additionalProperties: true
+      type: object
+      required:
+      - href
+      - rel
+      title: Link
+      description: https://github.com/radiantearth/stac-spec/blob/v1.0.0/collection-spec/collection-spec.md#link-object
+    stac_pydantic__links__Links:
+      items:
+        $ref: '#/components/schemas/stac_pydantic__links__Link'
+      type: array
+      title: Links
+servers:
+- url: https://cds.climate.copernicus.eu/api/catalogue/v1
+  description: Climate Data Store (absolute form of the published relative server)
+- url: https://ads.atmosphere.copernicus.eu/api/catalogue/v1
+  description: Atmosphere Data Store
+- url: https://ewds.climate.copernicus.eu/api/catalogue/v1
+  description: Early Warning Data Store
+- url: /api/catalogue/v1
+x-source: https://cds.climate.copernicus.eu/api/catalogue/v1/openapi.json
+x-ownership: info.title names ECMWF Data Stores; ECMWF states at https://www.ecmwf.int/en/about/what-we-do/copernicus
+  that it implements the Copernicus Climate Change Service (C3S) and Atmosphere Monitoring
+  Service (CAMS), whose Data Stores run on *.copernicus.eu.

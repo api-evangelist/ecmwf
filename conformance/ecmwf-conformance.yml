@@ -1,0 +1,26 @@
+generated: '2026-10-18'
+method: searched
+source: https://cds.climate.copernicus.eu/api/retrieve/v1/openapi.json
+standards:
+- id: ogc-api-processes
+  conforms: true
+  evidence: ECMWF Data Stores Processing API is based on OGC API - Processes standard as stated in OpenAPI description
+- id: stac
+  conforms: true
+  evidence: ECMWF Data Stores Catalogue API is STAC compliant as per API description
+- id: openapi-3.1
+  conforms: true
+  evidence: the document declares 3.1.0
+- id: oauth2
+  conforms: false
+  evidence: no securitySchemes declared
+- id: rfc9457
+  conforms: false
+  evidence: no response declares application/problem+json
+- id: idempotency
+  conforms: false
+  evidence: no idempotency key parameter on mutating operations
+- id: pagination
+  conforms: true
+  evidence: list operations take limit, page
+note: ECMWF APIs implement OGC and STAC standards for geospatial data access.

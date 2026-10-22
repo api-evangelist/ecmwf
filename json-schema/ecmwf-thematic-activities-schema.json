@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ecmwf/main/json-schema/ecmwf-thematic-activities-schema.json",
+  "title": "ThematicActivities",
+  "description": "Thematic activities model.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/ecmwf-data-stores-profiles-openapi.yml#/components/schemas/ThematicActivities",
+  "properties": {
+    "thematic_activities": {
+      "items": {
+        "$ref": "#/$defs/VocabularyItem"
+      },
+      "type": "array",
+      "title": "Thematic Activities",
+      "default": []
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "VocabularyItem": {
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "Id"
+        },
+        "label": {
+          "type": "string",
+          "title": "Label"
+        }
+      },
+      "additionalProperties": true,
+      "type": "object",
+      "required": [
+        "id",
+        "label"
+      ],
+      "title": "VocabularyItem",
+      "description": "General vocabulary item model."
+    }
+  }
+}

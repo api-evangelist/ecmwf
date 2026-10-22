@@ -1,23 +1,249 @@
 aid: ecmwf
+
 name: ECMWF
-description: 'ECMWF is a company surfaced via the API Evangelist harvest backlog (source: kin-score-markets)
-  and added to the network as a stub for full-pipeline profiling.'
+
+description: ECMWF, the European Centre for Medium-Range Weather Forecasts, is an intergovernmental organisation that is both a research institute
+  and a 24/7 operational service, producing global numerical weather predictions and other data for its Member and Co-operating States and the
+  broader community. It operates one of the largest supercomputer facilities and meteorological data archives in the world, and offers programmatic
+  data access through the ECMWF Web API and its Free & Open Data portal.
+
 url: https://raw.githubusercontent.com/api-evangelist/ecmwf/refs/heads/main/apis.yml
+
 x-type: company
+
 x-source: harvest:kin-score-markets
-x-tier: stub
-x-tier-reason: harvest
+
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-10-18 (modular-v1; was harvest)
+
 specificationVersion: '0.20'
+
 created: '2026-10-18'
+
 modified: '2026-10-18'
+
 tags:
 - Company
-apis: []
+- Weather
+- Meteorology
+- Forecasting
+- Climate
+- Open Data
+- Research
+- Intergovernmental
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
+image: https://www.ecmwf.int/themes/ecmwf/logo.svg
+
 common:
+- type: AgenticAccess
+  url: agentic-access/ecmwf-agentic-access.yml
+- type: Spectral
+  url: rules/ecmwf-rules.yml
+- type: JSONLD
+  url: json-ld/ecmwf-context.jsonld
+- type: Vocabulary
+  url: vocabulary/ecmwf-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/ecmwf-data-model.yml
+- type: Conventions
+  url: conventions/ecmwf-conventions.yml
+- type: Authentication
+  url: authentication/ecmwf-authentication.yml
+- type: Lifecycle
+  url: lifecycle/ecmwf-lifecycle.yml
+- type: ErrorCatalog
+  url: errors/ecmwf-problem-types.yml
+- type: Conformance
+  url: conformance/ecmwf-conformance.yml
+- type: Overlay
+  url: overlays/ecmwf-catalogue-overlay.yaml
+- type: WellKnown
+  url: well-known/ecmwf-well-known.yml
+- type: Hosts
+  url: hosts/ecmwf-hosts.yml
+- type: IntegrationEdges
+  url: integrations/ecmwf-integration-edges.yml
+- type: SDKs
+  url: packages/ecmwf-packages.yml
+- type: Packages
+  url: packages/ecmwf-packages.yml
+- type: DomainSecurity
+  url: security/ecmwf-domain-security.yml
 - type: Website
-  url: https://ecmwf.int
+  url: https://www.ecmwf.int/
+- type: Documentation
+  url: https://www.ecmwf.int/en/forecasts/documentation-and-support
+- type: APIReference
+  url: https://www.ecmwf.int/en/computing/software/ecmwf-web-api
+- type: Documentation
+  name: ECMWF Web API (Confluence)
+  url: https://confluence.ecmwf.int/display/WEBAPI
+- type: OpenData
+  url: https://data.ecmwf.int/
+- type: Support
+  url: https://www.ecmwf.int/en/support
+- type: Blog
+  url: https://www.ecmwf.int/en/about/media-centre/science-blog
+- type: Newsroom
+  url: https://www.ecmwf.int/en/about/media-centre/news
+- type: GitHubOrganization
+  url: https://github.com/ecmwf
+- type: Pricing
+  name: Licences available
+  url: https://www.ecmwf.int/en/forecasts/accessing-forecasts/licences-available
+- type: SignUp
+  url: https://www.ecmwf.int/user/register
+- type: Login
+  url: https://www.ecmwf.int/user/login
+- type: StatusPage
+  url: https://status.ecmwf.int/
+- type: TermsOfService
+  url: https://www.ecmwf.int/en/terms-use
+- type: PrivacyPolicy
+  url: https://www.ecmwf.int/en/privacy
+
+apis:
+- name: ECMWF Data Stores Processing API
+  description: OGC API - Processes compliant REST API that enables the submission of processing tasks (data retrieval) to the ECMWF Data Stores
+    system (Climate, Atmosphere and Early Warning Data Stores), with job monitoring, cost estimation and results retrieval.
+  humanURL: https://cds.climate.copernicus.eu/how-to-api
+  baseURL: https://cds.climate.copernicus.eu/api/retrieve/v1
+  tags:
+  - Weather
+  - Climate
+  - Data
+  properties:
+  - type: OpenAPI
+    url: openapi/ecmwf-data-stores-processing-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted)
+    url: https://cds.climate.copernicus.eu/api/retrieve/v1/openapi.json
+  - type: Documentation
+    url: https://cds.climate.copernicus.eu/how-to-api
+  - type: JSONSchema
+    url: json-schema/ecmwf-get-process-schema.json
+  - type: JSONSchema
+    url: json-schema/ecmwf-post-process-execution-schema.json
+  - type: JSONSchema
+    url: json-schema/ecmwf-post-process-execute-schema.json
+  - type: JSONSchema
+    url: json-schema/ecmwf-delete-job-schema.json
+  - type: JSONSchema
+    url: json-schema/ecmwf-get-job-schema.json
+  - type: JSONSchema
+    url: json-schema/ecmwf-request-cost-schema.json
+  x-ownership: Served on Copernicus hosts because ECMWF implements C3S and CAMS (https://www.ecmwf.int/en/about/what-we-do/copernicus); the contract's
+    info.title names ECMWF Data Stores.
+  aid: ecmwf:ecmwf-data-stores-processing-api
+- name: ECMWF Data Stores STAC Catalogue API
+  description: STAC compliant API to access the ECMWF Data Stores catalogues - dataset collections, search, licences and keyword vocabularies,
+    and dataset messages and changelogs.
+  humanURL: https://cds.climate.copernicus.eu/how-to-api
+  baseURL: https://cds.climate.copernicus.eu/api/catalogue/v1
+  tags:
+  - Weather
+  - Climate
+  - Data
+  properties:
+  - type: OpenAPI
+    url: openapi/ecmwf-data-stores-catalogue-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted)
+    url: https://cds.climate.copernicus.eu/api/catalogue/v1/openapi.json
+  - type: Documentation
+    url: https://cds.climate.copernicus.eu/how-to-api
+  - type: JSONSchema
+    url: json-schema/ecmwf-collection-schema.json
+  - type: JSONSchema
+    url: json-schema/ecmwf-landing-page-schema.json
+  - type: JSONSchema
+    url: json-schema/ecmwf-licence-schema.json
+  - type: JSONSchema
+    url: json-schema/ecmwf-content-schema.json
+  - type: JSONSchema
+    url: json-schema/ecmwf-form-data-schema.json
+  - type: JSONSchema
+    url: json-schema/ecmwf-collections-schema.json
+  x-ownership: Served on Copernicus hosts because ECMWF implements C3S and CAMS (https://www.ecmwf.int/en/about/what-we-do/copernicus); the contract's
+    info.title names ECMWF Data Stores.
+  aid: ecmwf:ecmwf-data-stores-stac-catalogue-api
+- name: ECMWF Data Stores Profile API
+  description: REST API to handle user authentication and users' data for the ECMWF Data Stores (OIDC and personal access token verification,
+    licence acceptance, starred datasets and profile vocabularies).
+  humanURL: https://cds.climate.copernicus.eu/how-to-api
+  baseURL: https://cds.climate.copernicus.eu/api/profiles/v1
+  tags:
+  - Weather
+  - Climate
+  - Data
+  properties:
+  - type: OpenAPI
+    url: openapi/ecmwf-data-stores-profiles-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted)
+    url: https://cds.climate.copernicus.eu/api/profiles/v1/openapi.json
+  - type: Documentation
+    url: https://cds.climate.copernicus.eu/how-to-api
+  - type: JSONSchema
+    url: json-schema/ecmwf-user-info-schema.json
+  - type: JSONSchema
+    url: json-schema/ecmwf-user-creation-data-schema.json
+  - type: JSONSchema
+    url: json-schema/ecmwf-user-data-schema.json
+  - type: JSONSchema
+    url: json-schema/ecmwf-minimal-user-info-schema.json
+  - type: JSONSchema
+    url: json-schema/ecmwf-user-pat-schema.json
+  - type: JSONSchema
+    url: json-schema/ecmwf-thematic-activities-schema.json
+  x-ownership: Served on Copernicus hosts because ECMWF implements C3S and CAMS (https://www.ecmwf.int/en/about/what-we-do/copernicus); the contract's
+    info.title names ECMWF Data Stores.
+  aid: ecmwf:ecmwf-data-stores-profile-api
+- name: ECMWF Web API
+  description: Programmatic access to ECMWF data archives (MARS and public datasets) through the ECMWF Web API at api.ecmwf.int, used by the ecmwf-api-client
+    Python library with a personal API key. No machine-readable contract is published; the base answers 403 "Missing access token" without credentials.
+  humanURL: https://www.ecmwf.int/en/computing/software/ecmwf-web-api
+  baseURL: https://api.ecmwf.int/v1
+  tags:
+  - Weather
+  - Data
+  properties:
+  - type: Documentation
+    url: https://confluence.ecmwf.int/display/WEBAPI
+  aid: ecmwf:ecmwf-web-api
+
+x-coverage:
+  state: covered
+  reason: identity-verified
+  detail: Website, description, image and link pointers verified against www.ecmwf.int pages on 2026-10-18.
+  evidence:
+  - url: https://www.ecmwf.int/
+    status: 200
+  - url: https://www.ecmwf.int/themes/ecmwf/logo.svg
+    status: 200
+  - url: https://www.ecmwf.int/en/computing/software/ecmwf-web-api
+    status: 200
+  - url: https://confluence.ecmwf.int/display/WEBAPI
+    status: 200
+  - url: https://www.ecmwf.int/en/about/media-centre/science-blog
+    status: 200
+  - url: https://github.com/ecmwf
+    status: 200
+  - url: https://www.ecmwf.int/user/register
+    status: 200
+  - url: https://api.ecmwf.int/v1
+    status: 403
+x-enrichment:
+  date: '2026-10-18'
+  status: enriched
+  artifacts_added: 62
+  pass: modular-v1
+  engine: identity=anthropic,contract=anthropic,surfaces=anthropic,docs=deepseek,regulatory=anthropic

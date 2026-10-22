@@ -1,0 +1,92 @@
+generated: '2026-10-18'
+method: derived
+type: MCPServer
+status: candidate
+name: ECMWF Data Stores (candidate MCP tool list)
+source: >-
+  Derived from the three captured OpenAPI contracts under openapi/ (ECMWF Data Stores
+  Processing, STAC Catalogue and Profile APIs). No official ECMWF MCP server was found.
+search_evidence:
+  - query: "ECMWF official MCP server Model Context Protocol"
+    result: >-
+      No ECMWF-operated server. The only ECMWF-tagged hit was a third-party directory tag
+      page (https://mcp.so/tags/ecmwf), which does not say who maintains the entry, so it is
+      not treated as ECMWF's own server.
+  - probe: https://api.github.com/search/repositories?q=mcp+org:ecmwf
+    result: 0 repositories
+  - probe: https://api.github.com/search/repositories?q=mcp+org:ecmwf-lab
+    result: 0 repositories
+  - probe: https://cds.climate.copernicus.eu/mcp
+    status: 404
+  - probe: https://cds.climate.copernicus.eu/.well-known/mcp.json
+    status: 404
+deployment:
+  mode: none
+  auth: api-key
+  verified: derived
+  note: >-
+    Nobody ships this server. The tools below are a candidate projection of the REST operations;
+    a real implementation would send the Data Stores personal access token in the PRIVATE-TOKEN
+    header (the header parameter named on the authenticated operations in the contracts, and the
+    `key:` in $HOME/.cdsapirc per https://cds.climate.copernicus.eu/how-to-api).
+base_urls:
+  - https://cds.climate.copernicus.eu/api
+  - https://ads.atmosphere.copernicus.eu/api
+  - https://ewds.climate.copernicus.eu/api
+tools:
+  - name: search_datasets
+    description: Search the Data Stores catalogue of dataset collections.
+    operationId: Datasets_Search_datasets_post
+    api: openapi/ecmwf-data-stores-catalogue-openapi.yml
+  - name: get_dataset
+    description: Get one dataset collection (STAC Collection) by id.
+    operationId: Get_Collection_collections__collection_id__get
+    api: openapi/ecmwf-data-stores-catalogue-openapi.yml
+  - name: list_dataset_changelog
+    description: List changelog messages for a dataset.
+    operationId: list_changelog_by_id_collections__collection_id__messages_changelog_get
+    api: openapi/ecmwf-data-stores-catalogue-openapi.yml
+  - name: get_licence
+    description: Get licence details by licence uid.
+    operationId: licence_details_vocabularies_licences__licence_uid__get
+    api: openapi/ecmwf-data-stores-catalogue-openapi.yml
+  - name: describe_process
+    description: Describe a retrieval process (dataset) and its inputs.
+    operationId: GetProcess_processes__process_id__get
+    api: openapi/ecmwf-data-stores-processing-openapi.yml
+  - name: apply_constraints
+    description: Check which request values are valid given a partial selection.
+    operationId: apply_constraints_processes__process_id__constraints_post
+    api: openapi/ecmwf-data-stores-processing-openapi.yml
+  - name: estimate_cost
+    description: Estimate the cost of a retrieval request before submitting it.
+    operationId: estimate_cost_processes__process_id__costing_post
+    api: openapi/ecmwf-data-stores-processing-openapi.yml
+  - name: submit_retrieval
+    description: Submit a data retrieval job.
+    operationId: PostProcessExecution_processes__process_id__execution_post
+    api: openapi/ecmwf-data-stores-processing-openapi.yml
+  - name: list_jobs
+    description: List submitted jobs.
+    operationId: GetJobs_jobs_get
+    api: openapi/ecmwf-data-stores-processing-openapi.yml
+  - name: get_job_status
+    description: Get the status of a job.
+    operationId: GetJob_jobs__job_id__get
+    api: openapi/ecmwf-data-stores-processing-openapi.yml
+  - name: get_job_results
+    description: Get the results (download asset) of a successful job.
+    operationId: GetJobResults_jobs__job_id__results_get
+    api: openapi/ecmwf-data-stores-processing-openapi.yml
+  - name: cancel_job
+    description: Cancel or delete a job.
+    operationId: DeleteJob_jobs__job_id__delete
+    api: openapi/ecmwf-data-stores-processing-openapi.yml
+  - name: list_accepted_licences
+    description: List the licences the account has accepted.
+    operationId: get_licences_account_licences_get
+    api: openapi/ecmwf-data-stores-profiles-openapi.yml
+  - name: accept_licence
+    description: Accept a dataset licence (required before retrieving some datasets).
+    operationId: accept_licence_account_licences__licence_uid__put
+    api: openapi/ecmwf-data-stores-profiles-openapi.yml

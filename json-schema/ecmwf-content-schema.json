@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ecmwf/main/json-schema/ecmwf-content-schema.json",
+  "title": "Content",
+  "description": "Content definition.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Content",
+  "properties": {
+    "type": {
+      "type": "string",
+      "title": "Type"
+    },
+    "id": {
+      "type": "string",
+      "title": "Id"
+    },
+    "title": {
+      "type": "string",
+      "title": "Title"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description"
+    },
+    "published": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Published"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Updated"
+    },
+    "links": {
+      "items": {
+        "$ref": "#/$defs/cads_catalogue_api_service__models__contents__Link"
+      },
+      "type": "array",
+      "title": "Links",
+      "default": []
+    },
+    "data": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Data"
+    }
+  },
+  "type": "object",
+  "required": [
+    "type",
+    "id",
+    "title",
+    "description",
+    "published",
+    "updated"
+  ],
+  "$defs": {
+    "cads_catalogue_api_service__models__contents__Link": {
+      "properties": {
+        "href": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 2083,
+              "minLength": 1,
+              "format": "uri"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "Href"
+        },
+        "rel": {
+          "type": "string",
+          "title": "Rel"
+        },
+        "type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Type"
+        },
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Title"
+        }
+      },
+      "type": "object",
+      "required": [
+        "href",
+        "rel"
+      ],
+      "title": "Link",
+      "description": "Link definition."
+    }
+  }
+}

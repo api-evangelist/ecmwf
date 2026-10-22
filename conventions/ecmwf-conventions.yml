@@ -1,0 +1,17 @@
+generated: '2026-10-18'
+method: searched
+source: https://cds.climate.copernicus.eu/how-to-api ; https://confluence.ecmwf.int/display/WEBAPI
+idempotency:
+  coverage: na
+  note: ECMWF APIs are primarily for data retrieval and processing tasks, not transactional writes.
+pagination:
+  style: offset-limit
+  note: OGC API - Processes standard uses limit parameter for pagination in Data Stores APIs.
+error_envelope:
+  format: json
+  note: APIs return JSON error responses following OGC API patterns.
+request_id:
+  note: Job IDs are used to track processing tasks in Data Stores APIs.
+reversibility:
+  note: APIs are for data retrieval and processing; no write operations to reverse.
+note: ECMWF APIs follow OGC API - Processes standard for data retrieval services. Authentication uses API keys/tokens. Data formats include GRIB, NetCDF, and other meteorological data formats.

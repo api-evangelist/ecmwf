@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ecmwf/main/json-schema/ecmwf-user-creation-data-schema.json",
+  "title": "UserCreationData",
+  "description": "Information set to create user record.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/ecmwf-data-stores-profiles-openapi.yml#/components/schemas/UserCreationData",
+  "properties": {
+    "thematic_activity_id": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Thematic Activity Id"
+    },
+    "affiliation_id": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Affiliation Id"
+    },
+    "activity_sector_id": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Activity Sector Id"
+    },
+    "country_id": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Country Id"
+    },
+    "organisation": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Organisation"
+    },
+    "contactable": {
+      "type": "boolean",
+      "title": "Contactable",
+      "default": true
+    },
+    "licences": {
+      "items": {
+        "$ref": "#/$defs/LicenceFullData"
+      },
+      "type": "array",
+      "title": "Licences",
+      "default": []
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "LicenceFullData": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Id"
+        },
+        "revision": {
+          "type": "integer",
+          "title": "Revision"
+        }
+      },
+      "type": "object",
+      "required": [
+        "id",
+        "revision"
+      ],
+      "title": "LicenceFullData"
+    }
+  }
+}

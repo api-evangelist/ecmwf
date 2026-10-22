@@ -1,0 +1,93 @@
+generated: '2026-10-18'
+method: searched
+source: registry metadata endpoints (registry.npmjs.org, pypi.org, rubygems.org, api.nuget.org, packagist.org, crates.io) ; github.com/ecmwf
+ownership_rule: 'official: true only when the registry metadata (homepage, repository, author, URLs) names the provider''s domain (ecmwf.int,
+  security/ecmwf-domain-security.yml) or its accepted GitHub org (ecmwf).'
+packages:
+- name: cdsapi
+  registry: pypi
+  url: https://pypi.org/project/cdsapi/
+  language: Python
+  official: true
+  version: 0.7.7
+  published: '2025-10-14'
+  evidence: 'author: ECMWF, author_email: software.support@ecmwf.int, homepage: https://github.com/ecmwf/cdsapi'
+- name: ecmwf-api-client
+  registry: pypi
+  url: https://pypi.org/project/ecmwf-api-client/
+  language: Python
+  official: true
+  version: 1.7.0
+  published: '2025-10-14'
+  evidence: 'author_email: "European Centre for Medium-Range Weather Forecasts (ECMWF)" <software.support@ecmwf.int>, homepage: https://github.com/ecmwf/ecmwf-api-client'
+- name: ecmwf-datastores-client
+  registry: pypi
+  url: https://pypi.org/project/ecmwf-datastores-client/
+  language: Python
+  official: true
+  version: 0.5.3
+  published: '2025-10-14'
+  evidence: 'homepage: https://github.com/ecmwf/ecmwf-datastores-client'
+- name: aviso-client
+  registry: github
+  url: https://github.com/ecmwf/aviso-client
+  language: Rust
+  official: true
+  version: null
+  published: '2026-10-15'
+  source_repo: https://github.com/ecmwf/aviso-client
+  evidence: repository in github.com/ecmwf, whose profile names the provider's domain
+- name: eccodes-python
+  registry: github
+  url: https://github.com/ecmwf/eccodes-python
+  language: Python
+  official: true
+  version: null
+  published: '2026-10-15'
+  source_repo: https://github.com/ecmwf/eccodes-python
+  evidence: repository in github.com/ecmwf, whose profile names the provider's domain
+- name: ecmwf-datastores-client
+  registry: github
+  url: https://github.com/ecmwf/ecmwf-datastores-client
+  language: Python
+  official: true
+  version: null
+  published: '2026-10-15'
+  source_repo: https://github.com/ecmwf/ecmwf-datastores-client
+  evidence: repository in github.com/ecmwf, whose profile names the provider's domain
+- name: metview-python
+  registry: github
+  url: https://github.com/ecmwf/metview-python
+  language: Python
+  official: true
+  version: null
+  published: '2026-10-10'
+  source_repo: https://github.com/ecmwf/metview-python
+  evidence: repository in github.com/ecmwf, whose profile names the provider's domain
+- name: polytope-client
+  registry: github
+  url: https://github.com/ecmwf/polytope-client
+  language: Python
+  official: true
+  version: null
+  published: '2026-10-09'
+  source_repo: https://github.com/ecmwf/polytope-client
+  evidence: repository in github.com/ecmwf, whose profile names the provider's domain
+- name: magics-python
+  registry: github
+  url: https://github.com/ecmwf/magics-python
+  language: Python
+  official: true
+  version: null
+  published: '2026-09-15'
+  source_repo: https://github.com/ecmwf/magics-python
+  evidence: repository in github.com/ecmwf, whose profile names the provider's domain
+- name: findlibs
+  registry: github
+  url: https://github.com/ecmwf/findlibs
+  language: Python
+  official: true
+  version: null
+  published: '2026-09-08'
+  source_repo: https://github.com/ecmwf/findlibs
+  evidence: repository in github.com/ecmwf, whose profile names the provider's domain

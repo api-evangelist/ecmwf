@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ecmwf/main/json-schema/ecmwf-request-cost-schema.json",
+  "title": "RequestCost",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/RequestCost",
+  "properties": {
+    "id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Id"
+    },
+    "cost": {
+      "type": "number",
+      "title": "Cost",
+      "default": 0.0
+    },
+    "limit": {
+      "type": "number",
+      "title": "Limit",
+      "default": 1.0
+    },
+    "cost_bar_steps": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Cost Bar Steps"
+    },
+    "request_is_valid": {
+      "type": "boolean",
+      "title": "Request Is Valid",
+      "default": true
+    },
+    "invalid_reason": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Invalid Reason"
+    }
+  },
+  "type": "object"
+}

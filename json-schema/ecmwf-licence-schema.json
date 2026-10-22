@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ecmwf/main/json-schema/ecmwf-licence-schema.json",
+  "title": "Licence",
+  "description": "Licence definition.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/ecmwf-data-stores-catalogue-openapi.yml#/components/schemas/Licence",
+  "properties": {
+    "id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Id"
+    },
+    "label": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Label"
+    },
+    "revision": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Revision"
+    },
+    "contents_url": {
+      "type": "string",
+      "title": "Contents Url"
+    },
+    "attachment_url": {
+      "type": "string",
+      "title": "Attachment Url"
+    },
+    "scope": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/LicenceCategories"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Scope"
+    },
+    "portal": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Portal"
+    },
+    "spdx_identifier": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Spdx Identifier"
+    },
+    "url": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Url"
+    }
+  },
+  "type": "object",
+  "required": [
+    "id",
+    "label",
+    "revision",
+    "contents_url",
+    "attachment_url",
+    "scope",
+    "portal",
+    "spdx_identifier",
+    "url"
+  ],
+  "$defs": {
+    "LicenceCategories": {
+      "type": "string",
+      "enum": [
+        "dataset",
+        "portal"
+      ],
+      "title": "LicenceCategories"
+    }
+  }
+}

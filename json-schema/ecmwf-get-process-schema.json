@@ -1,0 +1,939 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ecmwf/main/json-schema/ecmwf-get-process-schema.json",
+  "title": "GetProcess",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/ecmwf-data-stores-processing-openapi.yml#/components/schemas/GetProcess",
+  "properties": {
+    "title": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Title"
+    },
+    "description": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Description"
+    },
+    "keywords": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Keywords"
+    },
+    "metadata": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/Metadata"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Metadata"
+    },
+    "additionalParameters": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AdditionalParameters"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "id": {
+      "type": "string",
+      "title": "Id"
+    },
+    "version": {
+      "type": "string",
+      "title": "Version"
+    },
+    "jobControlOptions": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/JobControlOptions"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Jobcontroloptions"
+    },
+    "outputTransmission": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/TransmissionMode"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Outputtransmission"
+    },
+    "links": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/Link"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Links"
+    },
+    "inputs": {
+      "anyOf": [
+        {
+          "additionalProperties": {
+            "$ref": "#/$defs/InputDescription"
+          },
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Inputs"
+    },
+    "outputs": {
+      "anyOf": [
+        {
+          "additionalProperties": {
+            "$ref": "#/$defs/OutputDescription"
+          },
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Outputs"
+    }
+  },
+  "type": "object",
+  "required": [
+    "id",
+    "version"
+  ],
+  "$defs": {
+    "AdditionalParameter": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "value": {
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "items": {},
+                "type": "array"
+              },
+              {
+                "additionalProperties": true,
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array",
+          "title": "Value"
+        }
+      },
+      "type": "object",
+      "required": [
+        "name",
+        "value"
+      ],
+      "title": "AdditionalParameter"
+    },
+    "AdditionalParameters": {
+      "properties": {
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Title"
+        },
+        "role": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Role"
+        },
+        "href": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Href"
+        },
+        "parameters": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/AdditionalParameter"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Parameters"
+        }
+      },
+      "type": "object",
+      "title": "AdditionalParameters"
+    },
+    "InputDescription": {
+      "properties": {
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Title"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Description"
+        },
+        "keywords": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Keywords"
+        },
+        "metadata": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Metadata"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Metadata"
+        },
+        "additionalParameters": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AdditionalParameters"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "minOccurs": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Minoccurs",
+          "default": 1
+        },
+        "maxOccurs": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "#/$defs/MaxOccur"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Maxoccurs"
+        },
+        "schema": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Reference"
+            },
+            {
+              "$ref": "#/$defs/SchemaItem"
+            }
+          ],
+          "title": "Schema"
+        }
+      },
+      "type": "object",
+      "required": [
+        "schema"
+      ],
+      "title": "InputDescription"
+    },
+    "JobControlOptions": {
+      "type": "string",
+      "enum": [
+        "sync-execute",
+        "async-execute",
+        "dismiss"
+      ],
+      "title": "JobControlOptions"
+    },
+    "Link": {
+      "properties": {
+        "href": {
+          "type": "string",
+          "title": "Href"
+        },
+        "rel": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Rel"
+        },
+        "type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Type"
+        },
+        "hreflang": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Hreflang"
+        },
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Title"
+        }
+      },
+      "type": "object",
+      "required": [
+        "href"
+      ],
+      "title": "Link"
+    },
+    "MaxOccur": {
+      "type": "string",
+      "enum": [
+        "unbounded"
+      ],
+      "title": "MaxOccur"
+    },
+    "Metadata": {
+      "properties": {
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Title"
+        },
+        "role": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Role"
+        },
+        "href": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Href"
+        }
+      },
+      "type": "object",
+      "title": "Metadata"
+    },
+    "ObjectType": {
+      "type": "string",
+      "enum": [
+        "array",
+        "boolean",
+        "integer",
+        "number",
+        "object",
+        "string"
+      ],
+      "title": "ObjectType"
+    },
+    "OutputDescription": {
+      "properties": {
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Title"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Description"
+        },
+        "keywords": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Keywords"
+        },
+        "metadata": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Metadata"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Metadata"
+        },
+        "additionalParameters": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AdditionalParameters"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "schema": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Reference"
+            },
+            {
+              "$ref": "#/$defs/SchemaItem"
+            }
+          ],
+          "title": "Schema"
+        }
+      },
+      "type": "object",
+      "required": [
+        "schema"
+      ],
+      "title": "OutputDescription"
+    },
+    "Reference": {
+      "properties": {
+        "ref": {
+          "type": "string",
+          "title": "Ref"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "ref"
+      ],
+      "title": "Reference"
+    },
+    "SchemaItem": {
+      "properties": {
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Title"
+        },
+        "multipleOf": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Multipleof"
+        },
+        "maximum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Maximum"
+        },
+        "exclusiveMaximum": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Exclusivemaximum",
+          "default": false
+        },
+        "minimum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Minimum"
+        },
+        "exclusiveMinimum": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Exclusiveminimum",
+          "default": false
+        },
+        "maxLength": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Maxlength"
+        },
+        "minLength": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Minlength",
+          "default": 0
+        },
+        "pattern": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Pattern"
+        },
+        "maxItems": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Maxitems"
+        },
+        "minItems": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Minitems",
+          "default": 0
+        },
+        "uniqueItems": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Uniqueitems",
+          "default": false
+        },
+        "maxProperties": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Maxproperties"
+        },
+        "minProperties": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Minproperties",
+          "default": 0
+        },
+        "required": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "minItems": 1
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Required"
+        },
+        "enum": {
+          "anyOf": [
+            {
+              "items": {},
+              "type": "array",
+              "minItems": 1
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Enum"
+        },
+        "type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ObjectType"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Description"
+        },
+        "format": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Format"
+        },
+        "default": {
+          "anyOf": [
+            {},
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Default"
+        },
+        "nullable": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Nullable",
+          "default": false
+        },
+        "readOnly": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Readonly",
+          "default": false
+        },
+        "writeOnly": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Writeonly",
+          "default": false
+        },
+        "deprecated": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Deprecated",
+          "default": false
+        },
+        "contentMediaType": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Contentmediatype"
+        },
+        "contentEncoding": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Contentencoding"
+        },
+        "contentSchema": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Contentschema"
+        },
+        "items": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Reference"
+            },
+            {
+              "$ref": "#/$defs/SchemaItem"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Items"
+        },
+        "properties": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/Reference"
+                  },
+                  {
+                    "$ref": "#/$defs/SchemaItem"
+                  }
+                ]
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "SchemaItem"
+    },
+    "TransmissionMode": {
+      "type": "string",
+      "enum": [
+        "value",
+        "reference"
+      ],
+      "title": "TransmissionMode"
+    }
+  }
+}

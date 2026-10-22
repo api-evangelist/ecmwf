@@ -1,0 +1,22 @@
+generated: '2026-10-18'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: ecmwf.int
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 11 13:28:13 2026 GMT
+  hsts: false
+domains:
+- domain: ecmwf.int
+  dnssec: false
+  caa:
+  - 0 issuewild "digicert.com"
+  - 0 issue "sectigo.com"
+  - 0 issuewild "sectigo.com"
+  - 0 issuewild "harica.gr"
+  - 0 issue "harica.gr"
+  - 0 issue "amazonaws.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: none

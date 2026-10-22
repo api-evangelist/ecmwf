@@ -1,0 +1,172 @@
+generated: '2026-10-18'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 13
+  own: 11
+  other_domain: 1
+  platform: 1
+  roles:
+  - api
+  - data
+  - docs
+  - other
+  - source
+  - status
+  - website
+hosts:
+- host: api.ecmwf.int
+  found_by:
+  - apis[]
+  - contract-discovery
+  types: []
+  serves:
+  - api
+  registrable_domain: ecmwf.int
+  role: api
+  relation: own
+- host: cds.climate.copernicus.eu
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  - docs
+  registrable_domain: copernicus.eu
+  role: other
+  relation: other-domain
+- host: charts.ecmwf.int
+  found_by:
+  - probed
+  - site-links
+  - contract-discovery
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: ecmwf.int
+  role: other
+  relation: own
+- host: confluence.ecmwf.int
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - contract-discovery
+  - well-known
+  types:
+  - Documentation
+  serves: []
+  registrable_domain: ecmwf.int
+  role: docs
+  relation: own
+- host: data.ecmwf.int
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - namespace-probe
+  types:
+  - OpenData
+  serves: []
+  title: ECMWF Free & Open Data Portal
+  status: 200
+  registrable_domain: ecmwf.int
+  role: data
+  relation: own
+- host: destine.ecmwf.int
+  found_by:
+  - probed
+  - site-links
+  - contract-discovery
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: ecmwf.int
+  role: other
+  relation: own
+- host: ecmwf.int
+  found_by:
+  - probed
+  - contract-discovery
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: ecmwf.int
+  role: other
+  relation: own
+- host: events.ecmwf.int
+  found_by:
+  - probed
+  - site-links
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: ecmwf.int
+  role: other
+  relation: own
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - GitHubOrganization
+  serves: []
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: jobs.ecmwf.int
+  found_by:
+  - probed
+  - site-links
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: ecmwf.int
+  role: other
+  relation: own
+- host: obsstatus.ecmwf.int
+  found_by:
+  - probed
+  - site-links
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: ecmwf.int
+  role: other
+  relation: own
+- host: status.ecmwf.int
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - well-known
+  types:
+  - StatusPage
+  serves: []
+  registrable_domain: ecmwf.int
+  role: status
+  relation: own
+- host: www.ecmwf.int
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - site-links
+  - docs-index
+  types:
+  - Website
+  - Documentation
+  - APIReference
+  - Support
+  - Blog
+  - Newsroom
+  - Pricing
+  - SignUp
+  - Login
+  - TermsOfService
+  - PrivacyPolicy
+  serves:
+  - docs
+  registrable_domain: ecmwf.int
+  role: website
+  relation: own
