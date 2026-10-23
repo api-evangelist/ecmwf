@@ -2281,3 +2281,9 @@ x-source: https://cds.climate.copernicus.eu/api/catalogue/v1/openapi.json
 x-ownership: info.title names ECMWF Data Stores; ECMWF states at https://www.ecmwf.int/en/about/what-we-do/copernicus
   that it implements the Copernicus Climate Change Service (C3S) and Atmosphere Monitoring
   Service (CAMS), whose Data Stores run on *.copernicus.eu.
+x-provenance:
+  method: harvested
+  publisher: ECMWF
+  source: https://cds.climate.copernicus.eu/api/catalogue/v1/openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
